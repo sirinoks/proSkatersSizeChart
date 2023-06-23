@@ -3,6 +3,7 @@
 
 - Null/zero values in data get removed for visual improvement
 - CSS of brand select improved (background-fixed-animated select)
+- Questionnaire form initial html added
 
 TODO:
 
