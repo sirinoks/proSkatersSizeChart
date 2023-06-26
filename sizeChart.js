@@ -228,7 +228,6 @@ function handleBrandButtons(){
 function handleButtons() {
   handleSkateButtons();
   handleBrandButtons();
-  
 }
 
 function run() {

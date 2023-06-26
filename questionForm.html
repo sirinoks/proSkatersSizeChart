@@ -1,39 +1,98 @@
-<div>
-    <div>
-      <p>Do you currently have inline skates /rollerblades?</p>
+<ul class="form-stepper form-stepper-horizontal">
+  <!-- Step 1 -->
+  <li class="form-stepper-active text-center form-stepper-list" step="1">
+    <a class="mx-2">
+      <span class="form-stepper-circle">
+        <span>1</span>
+      </span>
+      <div class="label">Have skates?</div>
+    </a>
+  </li>
+  <!-- Step 2 -->
+  <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+    <a class="mx-2">
+      <span class="form-stepper-circle text-muted">
+        <span>2</span>
+      </span>
+      <div class="label text-muted">Brand</div>
+    </a>
+  </li>
+  <!-- Step 3 -->
+  <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+    <a class="mx-2">
+      <span class="form-stepper-circle text-muted">
+        <span>3</span>
+      </span>
+      <div class="label text-muted">Measurements</div>
+    </a>
+  </li>
+</ul>
+
+<form class="chartForm">
+  <div class="slide slide1">
+    <fieldset>
+      <p>Do you currently have inline skates/rollerblades?</p>
       <div>
-        <button>Yes</button>
-        <button>No</button>
+        <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" />
+        <label for="haveChoiceYes">Yes</label>
+        <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo" />
+        <label for="haveChoiceNo">No</label>
       </div>
-    </div>
-    <div>
-      <p>Which brand?</p>
+      <button class="navButton">Next</button>
+    </fieldset>
+  </div>
+  <div class="slide slide2">
+    <fieldset>
+
+      <label for="brand">
+        Which brand?
+      </label>
       <div>
-        <button>BrandA</button>
-        <button>BrandB</button>
-        <button>BrandC</button>
-        <button>BrandD</button>
+        <select name="brand" id="brand">
+          <option value="brandA">BrandA</option>
+          <option value="brandB">BrandB</option>
+          <option value="brandC">BrandC</option>
+          <option value="brandD">BrandD</option>
+        </select>
       </div>
-    </div>
-    <div>
-      <p>Athletic brand selected</p>
-    </div>
-    <div>
+      <button class="navButton">Back</button>
+      <button class="navButton">Next</button>
+
+    </fieldset>
+  </div>
+  <div>
+    <p>Athletic brand selected</p>
+  </div>
+  <div class="slide slide3">
+    <fieldset>
+
       <p>Please enter</p>
       <div>
+        <label for="choiceMm">MM</label>
+        <input type="number" id="choiceMm" />
+
+        <label for="choiceCm">CM</label>
+        <input type="number" id="choiceCm" />
+
+        <label for="choiceMp">Mondo</label>
+        <input type="number" id="choiceMp" />
+
         <button>MM</button>
         <button>CM</button>
         <button>MONDO</button>
-        <button>BrandD</button>
       </div>
-    </div>
-    <!--
-  Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
-  DONE
-    Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
-    Maybe we will also need a drop down of the skate model that the client is considering or something like that.
-    If a table is easier, the correct row should be highlighted
-  -->
-    
-  
+      <button class="navButton">Back</button>
+      <button class="navButton">Next</button>
+
+    </fieldset>
+
   </div>
+  <!--
+Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
+DONE
+  Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
+  Maybe we will also need a drop down of the skate model that the client is considering or something like that.
+  If a table is easier, the correct row should be highlighted
+-->
+
+</form>

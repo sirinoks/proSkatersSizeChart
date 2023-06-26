@@ -1,3 +1,9 @@
+## V0.8 ##
+26 June 2023
+
+- Started user questionnaire style, functionality and progress bar
+
+---
 ## V0.7 ##
 23 June 2023
 
