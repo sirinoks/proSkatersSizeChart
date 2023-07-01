@@ -1,3 +1,8 @@
+## V0.9 ##
+30 June 2023
+- Slide functionality complete
+- Some CSS of the form is done
+
 ## V0.8 ##
 26 June 2023
 
@@ -11,7 +16,13 @@
 - CSS of brand select improved (background-fixed-animated select)
 - Questionnaire form initial html added
 
+---
+
 TODO:
+- Size chart brand buttons js same choice click bug
+- question form slide 3 button choices functionality
+- question form data collection
+
 
 ...
 Older version changes not recorded

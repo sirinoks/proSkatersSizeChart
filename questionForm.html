@@ -28,62 +28,95 @@
   </li>
 </ul>
 
-<form class="chartForm">
+<div class="chartForm">
   <div class="slide slide1">
     <fieldset>
-      <p>Do you currently have inline skates/rollerblades?</p>
-      <div>
-        <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" />
-        <label for="haveChoiceYes">Yes</label>
-        <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo" />
-        <label for="haveChoiceNo">No</label>
+      <div class="formContent">
+        <div class="prompt">
+          <p>Do you currently have inline skates/rollerblades?</p>
+        </div>
+        <div>
+          <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" />
+          <label for="haveChoiceYes">Yes</label>
+          <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo" />
+          <label for="haveChoiceNo">No</label>
+        </div>
       </div>
-      <button class="navButton">Next</button>
+      <div class="navButtons">
+        <div class="navButtonsContainer">
+          <button class="navButton navNext" step_number="2">Next</button>
+        </div>
+      </div>
     </fieldset>
   </div>
-  <div class="slide slide2">
+  <div class="slide slide2 d-none">
     <fieldset>
+      <div class="formContent">
 
-      <label for="brand">
-        Which brand?
-      </label>
-      <div>
-        <select name="brand" id="brand">
-          <option value="brandA">BrandA</option>
-          <option value="brandB">BrandB</option>
-          <option value="brandC">BrandC</option>
-          <option value="brandD">BrandD</option>
-        </select>
+        <div class="prompt">
+          <label for="brand">
+            Which brand?
+          </label>
+        </div>
+        <div>
+          <select name="brand" id="brand">
+            <option value="brandA">BrandA</option>
+            <option value="brandB">BrandB</option>
+            <option value="brandC">BrandC</option>
+            <option value="brandD">BrandD</option>
+          </select>
+        </div>
+        <div>
+          <p>Athletic brand selected</p>
+        </div>
       </div>
-      <button class="navButton">Back</button>
-      <button class="navButton">Next</button>
-
+      <div class="navButtons">
+        <div class="navButtonsContainer">
+          <button class="navButton" step_number="1">Back</button>
+          <button class="navButton navNext" step_number="3">Next</button>
+        </div>
+      </div>
     </fieldset>
+
   </div>
-  <div>
-    <p>Athletic brand selected</p>
-  </div>
-  <div class="slide slide3">
+
+  <div class="slide slide3 d-none">
     <fieldset>
+      <div class="formContent">
 
-      <p>Please enter</p>
-      <div>
-        <label for="choiceMm">MM</label>
-        <input type="number" id="choiceMm" />
+        <div class="prompt">
 
-        <label for="choiceCm">CM</label>
-        <input type="number" id="choiceCm" />
+          <p>Please enter</p>
+          <div>
+            <div class="measurePoints">
+              <button class="measurePoint">MM</button>
+              <button class="measurePoint">CM</button>
+              <button class="measurePoint">MONDO</button>
+            </div>
+            <div class="choicePack choiceMm d-none">
+              <label for="choiceMm">MM</label>
+              <input type="number" id="choiceMm" />
+            </div>
 
-        <label for="choiceMp">Mondo</label>
-        <input type="number" id="choiceMp" />
+            <div class="choicePack choiceCm d-none">
+              <label for="choiceCm">CM</label>
+              <input type="number" id="choiceCm" />
+            </div>
 
-        <button>MM</button>
-        <button>CM</button>
-        <button>MONDO</button>
+            <div class="choicePack choiceMp d-none">
+              <label for="choiceMp">Mondo</label>
+              <input type="number" id="choiceMp" />
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="navButton">Back</button>
-      <button class="navButton">Next</button>
 
+      <div class="navButtons">
+        <div class="navButtonsContainer">
+          <button class="navButton" step_number="2">Back</button>
+          <button class="navButton navNext">Show table!</button>
+        </div>
+      </div>
     </fieldset>
 
   </div>
@@ -95,4 +128,4 @@ DONE
   If a table is easier, the correct row should be highlighted
 -->
 
-</form>
+</div>
