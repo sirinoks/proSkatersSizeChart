@@ -1,3 +1,7 @@
+## V0.95 ##
+04 July 2023
+- Slide 3 button select functionality, style and measure point inputs complete
+
 ## V0.9 ##
 30 June 2023
 - Slide functionality complete

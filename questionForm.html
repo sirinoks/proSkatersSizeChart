@@ -35,7 +35,7 @@
         <div class="prompt">
           <p>Do you currently have inline skates/rollerblades?</p>
         </div>
-        <div>
+        <div class="radioSwitch">
           <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" />
           <label for="haveChoiceYes">Yes</label>
           <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo" />
@@ -44,7 +44,7 @@
       </div>
       <div class="navButtons">
         <div class="navButtonsContainer">
-          <button class="navButton navNext" step_number="2">Next</button>
+          <button class="navButton navNext" currentStepNumber ="1" targetStepNumber="2">Next</button>
         </div>
       </div>
     </fieldset>
@@ -72,8 +72,8 @@
       </div>
       <div class="navButtons">
         <div class="navButtonsContainer">
-          <button class="navButton" step_number="1">Back</button>
-          <button class="navButton navNext" step_number="3">Next</button>
+          <button class="navButton" currentStepNumber="2" targetStepNumber="1">Back</button>
+          <button class="navButton navNext" currentStepNumber="2" targetStepNumber="3">Next</button>
         </div>
       </div>
     </fieldset>
@@ -89,9 +89,9 @@
           <p>Please enter</p>
           <div>
             <div class="measurePoints">
-              <button class="measurePoint">MM</button>
-              <button class="measurePoint">CM</button>
-              <button class="measurePoint">MONDO</button>
+              <button class="measurePoint" choice="choiceMm">MM</button>
+              <button class="measurePoint" choice="choiceCm">CM</button>
+              <button class="measurePoint" choice="choiceMp">MONDO</button>
             </div>
             <div class="choicePack choiceMm d-none">
               <label for="choiceMm">MM</label>
@@ -113,7 +113,7 @@
 
       <div class="navButtons">
         <div class="navButtonsContainer">
-          <button class="navButton" step_number="2">Back</button>
+          <button class="navButton" currentStepNumber="3" targetStepNumber="2">Back</button>
           <button class="navButton navNext">Show table!</button>
         </div>
       </div>

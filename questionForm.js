@@ -1,10 +1,10 @@
 //select all form navigation buttons, and loop through them
 function navigateToFormStep(stepNumber) {
+  console.log("navFunction:");
+  console.log(stepNumber);
   //hide all form steps.
   document.querySelectorAll(".slide").forEach((formStepElement) => {
     formStepElement.classList.add("d-none");
-    console.log("slide:");
-    console.log(formStepElement);
   });
 
   //mark all form steps as unfinished
@@ -17,8 +17,8 @@ function navigateToFormStep(stepNumber) {
   });
 
   //show the current form step (as passed to the function)
-  console.log("stepNumber:");
-  console.log(".slide" + stepNumber);
+  //console.log("stepNumber:");
+  //console.log(".slide" + stepNumber);
   document.querySelector(".slide" + stepNumber).classList.remove("d-none");
 
   //select the form step circle (progress bar)
@@ -46,11 +46,71 @@ function navigateToFormStep(stepNumber) {
   }
 }
 
-document.querySelectorAll(".navButton").forEach((formNavigationBtn) => {
-  formNavigationBtn.addEventListener("click", () => {
-    const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
-    console.log("primary stepnumber");
-    console.log(stepNumber);
-    navigateToFormStep(stepNumber);
+//When the form is complete, collect the data to export
+function collectData() {}
+
+//checks if on slide1 user selected no. Then we need to skip step 2
+function slideOneChoiceNo() {
+  return document.querySelector("#haveChoiceNo").checked;
+}
+
+//slide3 button and measure points showing up functionality
+function measurePoints() {
+  document.querySelectorAll(".measurePoint").forEach((choiceButton) => {
+    choiceButton.addEventListener("click", () => {
+      let choice = choiceButton.getAttribute("choice");
+
+      if (
+        !choiceButton.classList.contains("clicked") &&
+        document.querySelectorAll(".measurePoint.clicked").length > 0
+      ) {
+        document.querySelectorAll(".measurePoint.clicked").forEach((btn) => {
+          //remove all the elements
+          btn.classList.remove("clicked");
+          let ch = btn.getAttribute("choice");
+          document.querySelector(`.${ch}`).classList.add("d-none");
+        });
+      }
+
+      choiceButton.classList.add("clicked");
+      document.querySelector(`.${choice}`).classList.remove("d-none");
+    });
   });
-});
+}
+
+function modalNav() {
+  document.querySelectorAll(".navButton").forEach((formNavigationBtn) => {
+    formNavigationBtn.addEventListener("click", () => {
+      const targetStepNumber = parseInt(
+        formNavigationBtn.getAttribute("targetStepNumber")
+      );
+      const currentStep = parseInt(
+        formNavigationBtn.getAttribute("currentStepNumber")
+      );
+
+      //if the button is next
+      if (currentStep < targetStepNumber) {
+        //skip step2 if the user doesn't have skates
+        if (currentStep == 1 && slideOneChoiceNo()) {
+          console.log("true");
+          navigateToFormStep(targetStepNumber + 1);
+        } else {
+          navigateToFormStep(targetStepNumber);
+        }
+      } else {
+        if (currentStep == 3 && slideOneChoiceNo()) {
+          navigateToFormStep(targetStepNumber - 1);
+        } else {
+          navigateToFormStep(targetStepNumber);
+        }
+      }
+    });
+  });
+}
+
+function run() {
+  modalNav();
+  measurePoints();
+}
+
+document.addEventListener("DOMContentLoaded", run());
