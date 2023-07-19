@@ -24,6 +24,7 @@
 
 TODO:
 - Size chart brand buttons js same choice click bug
+- Size chart row creation - async/promise system
 - question form slide 3 button choices functionality
 - question form data collection
 

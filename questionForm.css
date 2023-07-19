@@ -1,9 +1,18 @@
 /*
 https://levelup.gitconnected.com/create-a-multi-step-form-using-html-css-and-javascript-30aca5c062fc
 */
+#primary{
+  display:flex;
+}
+
+a, a:hover{
+  color: black;
+}
+
 .chartForm {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
 .chartForm .slide {
@@ -39,6 +48,7 @@ ul.form-stepper {
   background-color: #34495e;
   color: white;
   cursor: pointer;
+  border-radius:0;
 }
 
 .submit-btn {
@@ -174,6 +184,7 @@ ul.form-stepper li a .form-stepper-circle {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  border-radius: 0;
 }
 
 .measurePoint:hover {
@@ -182,7 +193,10 @@ ul.form-stepper li a .form-stepper-circle {
 }
 
 .formContent {
-  margin: 2vh 2vw;
+  display:flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin: 1vh 1vw;
 }
 .navButtons {
   align-self: flex-end;
@@ -194,7 +208,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 
 .navButtonsContainer {
-  margin: 2vh 2vw;
+  margin: 1vh 1vw;
   display: flex;
   justify-content: space-between;
 }
@@ -206,6 +220,10 @@ Make sure the next button in the first slide is properly placed
   margin-left: auto;
 }
 
+#finalButton:hover{
+  background-color: #dc9814;
+}
+
 
 /*
 Radio switch 1st slide
@@ -213,6 +231,7 @@ Radio switch 1st slide
 .radioSwitch {
 	display: flex;
 	overflow: hidden;
+  gap:2px;
 }
 
 .radioSwitch input {
@@ -225,12 +244,16 @@ Radio switch 1st slide
 }
 
 .radioSwitch label {
-	background-color: #e4e4e4;
+  background-color: rgba(0, 0, 0, 0.06694560669);
 	text-align: center;
 	padding: 1vh 1vw;
-	margin-right: -1px;
-	border: 1px solid #34495e;
+  border: 1px solid #ddd;
 	transition: all 0.1s ease-in-out;
+}
+
+.radioSwitch label:hover {
+  background-color: rgba(0, 0, 0, 0.07694560669);
+  border-color: #34495e;
 }
 
 .radioSwitch label:hover {
@@ -243,15 +266,43 @@ Radio switch 1st slide
   color:white;
 }
 
+button.measurePoint{
+  transition: all 0.1s ease-in-out;
+}
+
 .measurePoint.clicked{
   background-color:#34495e;
   color:white;
 }
 
 
-@media (max-height: 500px) {
-  .chartForm .slide {
-    height: 100%;
-    max-height: 100%;
+@media (max-width: 1300px) {
+  .form-stepper-horizontal{
+    display:none;
   }
+  
+  .chartForm *{
+    font-size: 1.2rem;
+  }
+  
+ .chartForm .slide  {
+    width: 100vw;
+  }
+  
+ .chartForm .formContent{
+   display: flex;
+   flex-direction: column;
+   gap: 1vh;
+  }
+  
+  .chartForm .slide1 label, .chartForm .slide3 .measurePoint {
+    padding: 3vh 3vw;
+  }
+  
+  .chartForm .slide3 .answer{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
 }
