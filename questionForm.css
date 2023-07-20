@@ -31,17 +31,6 @@ a, a:hover{
   padding: 1vh 1vw;
 }
 
-/*
-  Go through and figure out what we need
-  */
-ul.form-stepper {
-  width: 50vw;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 0;
-}
-
 .navButton {
   padding: 0.7rem 1.5rem;
   border: 1px solid #34495e;
@@ -51,12 +40,28 @@ ul.form-stepper {
   border-radius:0;
 }
 
+.navButton:disabled{
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor:not-allowed;
+}
+
 .submit-btn {
   border: 1px solid #34495e;
   background-color: #34495e;
 }
+
+/*Form stepper*/
 .d-none {
   display: none;
+}
+
+ul.form-stepper {
+  width: 50vw;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
 }
 
 ul.form-stepper .form-stepper-circle {
@@ -169,6 +174,7 @@ ul.form-stepper li a .form-stepper-circle {
 .form-stepper a {
   cursor: default;
 }
+/*Form stepper end*/
 
 .measurePoints {
   display: flex;
@@ -197,10 +203,13 @@ ul.form-stepper li a .form-stepper-circle {
   flex-direction: column;
   gap: 1vh;
   margin: 1vh 1vw;
+  min-height:12vh;
 }
+
 .navButtons {
   align-self: flex-end;
   width: 100%;
+  min-height:5vh;
 }
 
 .navButtonsContainer .navNext {
@@ -220,7 +229,7 @@ Make sure the next button in the first slide is properly placed
   margin-left: auto;
 }
 
-#finalButton:hover{
+#finalButton:hover:enabled{
   background-color: #dc9814;
 }
 
@@ -275,6 +284,11 @@ button.measurePoint{
   color:white;
 }
 
+.error{
+  color:rgb(190, 0, 0);
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 1300px) {
   .form-stepper-horizontal{
@@ -293,6 +307,11 @@ button.measurePoint{
    display: flex;
    flex-direction: column;
    gap: 1vh;
+   min-height: 40vh;
+  }
+  
+  .chartForm .navButtons{
+    min-height: 6vh;
   }
   
   .chartForm .slide1 label, .chartForm .slide3 .measurePoint {

@@ -46,6 +46,13 @@ function navigateToFormStep(stepNumber) {
   }
 }
 
+//Checks if the data has been entered, and the user can proceed to next step
+function validateInput(options) {
+  console.log("in valudation:");
+  console.log(options);
+  return true;
+}
+
 //When the form is complete, collect the data to export
 function collectData() {}
 
@@ -73,6 +80,9 @@ function measurePoints() {
       }
 
       choiceButton.classList.add("clicked");
+      let check= validateInput(choiceButton);
+      console.log("check for validation return")
+      console.log(check);
       document.querySelector(`.${choice}`).classList.remove("d-none");
     });
   });
