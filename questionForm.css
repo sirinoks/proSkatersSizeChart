@@ -42,7 +42,7 @@ a, a:hover{
 
 .navButton:disabled{
   background-color: rgba(0, 0, 0, 0.2);
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   cursor:not-allowed;
 }
 
@@ -288,6 +288,11 @@ button.measurePoint{
   color:rgb(190, 0, 0);
   display: flex;
   flex-direction: column;
+  display: none;
+}
+
+.errorArea{
+  border: solid 1px rgb(190, 0, 0);
 }
 
 @media (max-width: 1300px) {

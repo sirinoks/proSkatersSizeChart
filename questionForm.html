@@ -13,6 +13,7 @@ DONE
     <link rel="stylesheet" href="questionForm.css">
   </head>
   <body>
+    <button id="testButton">Test</button>
     <ul class="form-stepper form-stepper-horizontal">
       <!-- Step 1 -->
       <li class="form-stepper-active text-center form-stepper-list" step="1">
@@ -52,16 +53,21 @@ DONE
             </div>
             <div class="answer">
               <div class="radioSwitch">
-                <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" />
+                <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" class="choiceInput" />
                 <label for="haveChoiceYes">Yes</label>
-                <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo" />
+                <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo"  class="choiceInput" />
                 <label for="haveChoiceNo">No</label>
               </div>
+            </div>
+            <div class="error">
+              <span class="errChoice">
+                Please select an option
+              </span>
             </div>
           </div>
           <div class="navButtons">
             <div class="navButtonsContainer">
-              <button class="navButton navNext" currentStepNumber ="1" targetStepNumber="2" >Next</button>
+              <button class="navButton navNext" currentStepNumber ="1" targetStepNumber="2" disabled="true">Next</button>
             </div>
           </div>
         </fieldset>
@@ -76,21 +82,25 @@ DONE
               </label>
             </div>
             <div class="answer">
-              <select name="brand" id="brand">
+              <select name="brand" class="choiceInput" id="brand">
+                <option disabled selected value>-- select an option --</option>
+
                 <option value="brandA">BrandA</option>
                 <option value="brandB">BrandB</option>
                 <option value="brandC">BrandC</option>
                 <option value="brandD">BrandD</option>
               </select>
             </div>
-            <div>
-              <p>Athletic brand selected</p>
+            <div class="error hidden">
+              <span class="errChoice">
+                Please select a brand
+              </span>
             </div>
           </div>
           <div class="navButtons">
             <div class="navButtonsContainer">
               <button class="navButton" currentStepNumber="2" targetStepNumber="1">Back</button>
-              <button class="navButton navNext" currentStepNumber="2" targetStepNumber="3" >Next</button>
+              <button class="navButton navNext" currentStepNumber="2" targetStepNumber="3" disabled="true">Next</button>
             </div>
           </div>
         </fieldset>
@@ -107,23 +117,23 @@ DONE
     
             <div class="answer">
                 <div class="measurePoints">
-                  <button class="measurePoint" choice="choiceMm">MM</button>
-                  <button class="measurePoint" choice="choiceCm">CM</button>
-                  <button class="measurePoint" choice="choiceMp">MONDO</button>
+                  <button class="measurePoint choiceInput" choice="choiceMm">MM</button>
+                  <button class="measurePoint choiceInput" choice="choiceCm">CM</button>
+                  <button class="measurePoint choiceInput" choice="choiceMp">MONDO</button>
                 </div>
                 <div class="choicePack choiceMm d-none">
                   <label for="choiceMm">MM</label>
-                  <input type="number" id="choiceMm" />
+                  <input type="number" id="choiceMm" class="choiceInput" />
                 </div>
     
                 <div class="choicePack choiceCm d-none">
                   <label for="choiceCm">CM</label>
-                  <input type="number" id="choiceCm" />
+                  <input type="number" id="choiceCm" class="choiceInput" />
                 </div>
     
                 <div class="choicePack choiceMp d-none">
                   <label for="choiceMp">Mondo</label>
-                  <input type="number" id="choiceMp" />
+                  <input type="number" id="choiceMp" class="choiceInput" />
                 </div>
             </div>
             <div class="error hidden">
@@ -141,7 +151,7 @@ DONE
           <div class="navButtons">
             <div class="navButtonsContainer">
               <button class="navButton" currentStepNumber="3" targetStepNumber="2">Back</button>
-              <button class="navButton navNext" id="finalButton" disabled>Show table!</button>
+              <button class="navButton navNext" id="finalButton" disabled="false">Show table!</button>
             </div>
           </div>
         </fieldset>

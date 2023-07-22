@@ -1,3 +1,7 @@
+## V0.96 ##
+22 July 2023
+- All input validation complete - next step is disabled if there is no input selected
+
 ## V0.95 ##
 04 July 2023
 - Slide 3 button select functionality, style and measure point inputs complete
