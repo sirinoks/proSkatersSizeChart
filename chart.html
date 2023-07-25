@@ -1,0 +1,644 @@
+
+  <!--
+Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
+DONE
+  Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
+  Maybe we will also need a drop down of the skate model that the client is considering or something like that.
+  If a table is easier, the correct row should be highlighted
+-->
+
+
+<html>
+  <head>
+    <link rel="stylesheet" href="chart.css">
+  </head>
+  <body>
+    <button id="testButton">Test</button>
+    <ul class="form-stepper form-stepper-horizontal">
+      <!-- Step 1 -->
+      <li class="form-stepper-active text-center form-stepper-list" step="1">
+        <a class="mx-2">
+          <span class="form-stepper-circle">
+            <span>1</span>
+          </span>
+          <div class="label">Skates</div>
+        </a>
+      </li>
+      <!-- Step 2 -->
+      <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+        <a class="mx-2">
+          <span class="form-stepper-circle text-muted">
+            <span>2</span>
+          </span>
+          <div class="label text-muted">Brand</div>
+        </a>
+      </li>
+      <!-- Step 3 -->
+      <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+        <a class="mx-2">
+          <span class="form-stepper-circle text-muted">
+            <span>3</span>
+          </span>
+          <div class="label text-muted">Measurements</div>
+        </a>
+      </li>
+    </ul>
+    
+    <div class="chartForm">
+      <div class="slide slide1">
+        <fieldset>
+          <div class="formContent">
+            <div class="prompt">
+              <p>Do you currently have inline skates/rollerblades?</p>
+            </div>
+            <div class="answer">
+              <div class="radioSwitch">
+                <input type="radio" name="haveChoice" id="haveChoiceYes" value="haveChoiceYes" class="choiceInput" />
+                <label for="haveChoiceYes">Yes</label>
+                <input type="radio" name="haveChoice" id="haveChoiceNo" value="haveChoiceNo"  class="choiceInput" />
+                <label for="haveChoiceNo">No</label>
+              </div>
+            </div>
+            <div class="error">
+              <span class="errChoice">
+                Please select an option
+              </span>
+            </div>
+          </div>
+          <div class="navButtons">
+            <div class="navButtonsContainer">
+              <button class="navButton navNext" currentStepNumber ="1" targetStepNumber="2" disabled="true">Next</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="slide slide2 d-none">
+        <fieldset>
+          <div class="formContent">
+    
+            <div class="prompt">
+              <label for="brand">
+                Which brand?
+              </label>
+            </div>
+            <div class="answer">
+              <select name="brand" class="choiceInput" id="brand">
+                <option disabled selected value>-- select an option --</option>
+
+                <option value="brandA">BrandA</option>
+                <option value="brandB">BrandB</option>
+                <option value="brandC">BrandC</option>
+                <option value="brandD">BrandD</option>
+              </select>
+            </div>
+            <div class="error hidden">
+              <span class="errChoice">
+                Please select a brand
+              </span>
+            </div>
+          </div>
+          <div class="navButtons">
+            <div class="navButtonsContainer">
+              <button class="navButton" currentStepNumber="2" targetStepNumber="1">Back</button>
+              <button class="navButton navNext" currentStepNumber="2" targetStepNumber="3" disabled="true">Next</button>
+            </div>
+          </div>
+        </fieldset>
+    
+      </div>
+    
+      <div class="slide slide3 d-none">
+        <fieldset>
+          <div class="formContent">
+    
+            <div class="prompt">
+              <p>Please enter</p>
+            </div>
+    
+            <div class="answer">
+                <div class="measurePoints">
+                  <button class="measurePoint choiceInput" choice="choiceMm">MM</button>
+                  <button class="measurePoint choiceInput" choice="choiceCm">CM</button>
+                  <button class="measurePoint choiceInput" choice="choiceMp">MONDO</button>
+                </div>
+                <div class="choicePack choiceMm d-none">
+                  <label for="choiceMm">MM</label>
+                  <input type="number" id="choiceMm" class="choiceInput" />
+                </div>
+    
+                <div class="choicePack choiceCm d-none">
+                  <label for="choiceCm">CM</label>
+                  <input type="number" id="choiceCm" class="choiceInput" />
+                </div>
+    
+                <div class="choicePack choiceMp d-none">
+                  <label for="choiceMp">Mondo</label>
+                  <input type="number" id="choiceMp" class="choiceInput" />
+                </div>
+            </div>
+            <div class="error hidden">
+              <span class="errSelect">
+                Please select unit of measurement
+              </span>
+              <span class="errChoice">
+                Please enter a measurement
+              </span>
+            </div>
+    
+              
+          </div>
+    
+          <div class="navButtons">
+            <div class="navButtonsContainer">
+              <button class="navButton" currentStepNumber="3" targetStepNumber="2">Back</button>
+              <button class="navButton navNext" id="finalButton" disabled="false">Show table!</button>
+            </div>
+          </div>
+        </fieldset>
+    
+      </div>
+      <!--
+    Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
+    DONE
+      Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
+      Maybe we will also need a drop down of the skate model that the client is considering or something like that.
+      If a table is easier, the correct row should be highlighted
+    -->
+    
+    </div>
+
+
+<div class="container">
+  <div class="leftCol">
+    <h2>Skates</h2>
+    <div>
+      <div class="skateChoice">
+        FR
+      </div>
+      <div class="skateChoice">
+        FE
+      </div>
+      <div class="skateChoice">
+        Something else
+      </div>
+      <div class="skateChoice">
+        Other
+      </div>
+    </div>
+  </div>
+  <div class="rightCol">
+    <div class="brands">
+      <h2>Brands</h2>
+      <div class="brandContainer">
+        <div class="brandChoice">
+          abibas
+        </div>
+        <div class="brandChoice">
+          coolbrand
+        </div>
+        <div class="brandChoice">
+          noname
+        </div>
+        <div class="brandChoice">
+          ahaha
+        </div>
+        <div class="brandChoice">
+          laaarbrand
+        </div>
+        <div class="selectSkateStyle"></div>
+
+      </div>
+
+    </div>
+    <div class="conversionTable">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="4" id="skateSize">Skate size</th>
+          </tr>
+          <tr>
+            <th colspan="8" id="shoeSize">Shoe size</th>
+          </tr>
+          <tr>
+            <th colspan="3">US</th>
+            <th>EU</th>
+            <th colspan="3">UK</th>
+            <th>CM</th>
+          </tr>
+          <tr>
+            <th>Women</th>
+            <th>Men</th>
+            <th>Junior</th>
+            <th></th>
+            <th>Women</th>
+            <th>Men</th>
+            <th>Junior</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="conversionTableContent">
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+          <tr>
+            <th>Skate size</th>
+            <td>USWomen</td>
+            <td>USMen</td>
+            <td>USJunior</td>
+            <td>EU</td>
+            <td>UKWomen</td>
+            <td>UKMen</td>
+            <td>UKJunior</td>
+            <td>CM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="chart.js"></script>
+</html>
