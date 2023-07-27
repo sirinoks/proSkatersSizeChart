@@ -378,7 +378,7 @@ function measurePoints() {
 }
 
 function modalNav() {
-    document.querySelectorAll(".navButton").forEach((formNavigationBtn) => {
+    document.querySelectorAll(".navButton:not(#finalButton)").forEach((formNavigationBtn) => {
         formNavigationBtn.addEventListener("click", () => {
             const targetStepNumber = parseInt(
                 formNavigationBtn.getAttribute("targetStepNumber")
@@ -406,23 +406,32 @@ function modalNav() {
     });
 }
 
-function run() {
-    console.log("ready");
+function handleQuestionnaire(){
+    handleButtons();
+    handleChoices();
+    modalNav();
+    measurePoints();
+    document.querySelector("#finalButton").addEventListener("click", ()=>{
+        handleChart();
+    });
+}
 
+function handleChart(){
+    console.log("handle chart");
+    document.querySelector(".chart").style.display="inherit";
     //createRows(multipleArrayData.length);
-
     let allRows = document.querySelectorAll(".conversionTableContent tr");
     removeExtraRows(allRows);
 
     populateRows(allRows);
 
     styleEmptyCells(allRows);
+}
 
-    handleButtons();
+function run() {
+    console.log("ready");
 
-    handleChoices();
-    modalNav();
-    measurePoints();
+    handleQuestionnaire();
 }
 
 //run everything after the page is loaded

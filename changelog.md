@@ -1,3 +1,7 @@
+## V0.97 ##
+27 July 2023
+- Questionnaire and chart united into a single file
+- Final button shows the chart
 ## V0.96 ##
 22 July 2023
 - All input validation complete - next step is disabled if there is no input selected
