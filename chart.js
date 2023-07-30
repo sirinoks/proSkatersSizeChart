@@ -33,6 +33,11 @@ var brands_table = {};
 var brands_list = [];
 var brand_skates = [];
 var brand_shoes = [];
+var my_size_cm = 0;
+var my_size_mm = 0;
+var my_size_mp = 0;
+var my_size_mondo = 0;
+var my_size_brand = "";
 
 //Change this variable if you would like the table to be displayed on localhost
 var is_localhost = true;
@@ -366,15 +371,66 @@ async function handleQuestionnaire() {
 function handleChart() {
     console.log("handle chart");
     document.querySelector(".chart").style.display = "inherit";
+
+    var cmSize = document.querySelector(".choicePack #choiceCm").value;
+    var mmSize = document.querySelector(".choicePack #choiceMm").value;
+    var mpSize = document.querySelector(".choicePack #choiceMp").value;
+    var mondoSize = document.querySelector(".choicePack #choiceMondo").value;
+    var currentSize = document.querySelectorAll(".choicePack:not(.d-none)")[0];
+    var selectedBrand = document.querySelector("#brand").selectedOptions[0].value;
+
+    set_global_size_choise(cmSize, mmSize, mpSize, mondoSize, selectedBrand, currentSize);
+    update_table();
 }
 
+function set_global_size_choise(cm, mm, mp, mondo, brand, currentSize){
+    console.log("set_global_size_choise");
+
+    my_size_brand = brand;
+    if (currentSize.classList.contains("choiceCm")){
+        my_size_cm = cm;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+
+        //if 160+ probably user wanted MM
+        if (my_size_cm > 160){
+            my_size_cm = 0;
+            my_size_mm = cm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMm")){
+        my_size_cm = 0;
+        my_size_mm = mm;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+        
+        //if 160 probably user wanted CM
+        if (my_size_mm < 160){
+            my_size_mm = 0;
+            my_size_cm = mm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMp")){
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = mp;
+        my_size_mondo = 0;
+    }
+    else if (currentSize.classList.contains("choiceMondo")){
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = mondo;
+    }
+}
 
 async function handleEventListeners() {
     console.log("handleEventListeners");
     // update table on brandChoice change
-    $('.brandChoice').click(function () {
-        update_table(this.innerText);
-    });
+    document.querySelectorAll(".brandChoice").forEach(brand => 
+        brand.addEventListener("click", (event) => update_table(event.target.innerText))
+      )
 }
 
 
@@ -384,27 +440,61 @@ function get_size_text(size) {
 }
 
 // change table 
-function update_table(brandName) {
-    var brand_data = brands_table.table_data[brandName];
+function update_table(brandName = "") {
+    var brand_data = {};
+    var skate_data = {};
+
+    if(brandName.length > 0){
+        brand_data = brands_table.table_data[brandName]
+    }
+    else {
+        brand_data = brands_table.table_data[brand_shoes[0]]
+    }
+
+    if (my_size_brand.length > 0) {
+        skate_data = brands_table.table_data[my_size_brand];
+    }
+    
+    console.log(`my_size_mm: ${my_size_mm}`);
+    console.log(`my_size_cm: ${my_size_cm}`);
+    console.log(`my_size_mp: ${my_size_mp}`);
+    console.log(`my_size_mondo: ${my_size_mondo}`);
+
+    console.log("skate_data");
+    console.log(skate_data);
 
     //empty the table
     document.querySelector(".conversionTableContent").innerHTML = '<tbody class="conversionTableContent"></tbody>';
 
-    let tableContent = $(".conversionTableContent");
+    let tableContent = document.querySelector(".conversionTableContent");
+
     brand_data.forEach((size_data) => {
-        tableContent.append(`<tr> <th>0</th> <td>${get_size_text(size_data.psp_sizing_us_w)}</td> <td>${get_size_text(size_data.psp_sizing_us_m)}</td> <td>${get_size_text(size_data.psp_sizing_us_j)}</td> <td>${get_size_text(size_data.psp_sizing_eu)}</td> <td>${get_size_text(size_data.psp_sizing_uk_w)}</td> <td>${get_size_text(size_data.psp_sizing_uk_m)}</td> <td>${get_size_text(size_data.psp_sizing_uk_j)}</td> <td>${get_size_text(size_data.psp_sizing_cm)}</td> </tr>`)
+        var tr = document.createElement("tr");
+        tr.innerHTML = `<tr> <th>0</th> <td>${get_size_text(size_data.psp_sizing_us_w)}</td> <td>${get_size_text(size_data.psp_sizing_us_m)}</td> <td>${get_size_text(size_data.psp_sizing_us_j)}</td> <td>${get_size_text(size_data.psp_sizing_eu)}</td> <td>${get_size_text(size_data.psp_sizing_uk_w)}</td> <td>${get_size_text(size_data.psp_sizing_uk_m)}</td> <td>${get_size_text(size_data.psp_sizing_uk_j)}</td> <td>${get_size_text(size_data.psp_sizing_cm)}</td> </tr>`
+        tableContent.append(tr);
     });
 }
 
 
 // Add skateChoice
-function psp_calculator_plugin_add_skateChoice(brandName) {
-    $(".leftCol").append(`<div class="skateChoice">${brandName}</div>`)
+async function psp_calculator_plugin_add_skateChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = `<div class="skateChoice">${brandName}</div>`;
+    document.querySelector(".leftCol").append(div)
 }
 
 // Add brandChoice
-function psp_calculator_plugin_add_brandChoice(brandName) {
-    $(".brandContainer").append(`<div class="brandChoice">${brandName}</div>`)
+async function psp_calculator_plugin_add_brandChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = `<div class="brandChoice">${brandName}</div>`;
+    document.querySelector(".brandContainer").append(div)
+}
+
+// Add skateBrandChoice for qestionnaire
+async function psp_calculator_plugin_add_skateBrandChoice(brandName) {
+    let option = document.createElement("option");
+    option.innerHTML = `<option value="${brandName}">${brandName}</option>`;
+    document.querySelector("#brand").append(option)
 }
 
 // Update global data from WordPress DB
@@ -442,6 +532,7 @@ async function update_global_data() {
         brands_list.forEach(function (brandName) {
             if (brandName.toLowerCase().includes("skate")) {
                 psp_calculator_plugin_add_skateChoice(brandName);
+                psp_calculator_plugin_add_skateBrandChoice(brandName);
                 brand_skates.push(brandName);
             }
             else {
