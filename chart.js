@@ -63,33 +63,6 @@ function waitForElm(el) {
     });
 }
 
-function createRows(rowAmount) {
-    let tableContent = document.querySelector(".conversionTableContent");
-    console.log("creating rows");
-    for (let i = 0; i < rowAmount; i++) {
-        console.log(i);
-        let tr = document.createElement("tr");
-        tr.setAttribute("id", `tr-${i}`);
-
-        waitForElm(`#tr-${i}`).then((elm) => {
-            console.log("Element is ready");
-            console.log(elm.textContent);
-        });
-
-        let th = document.createElement("th");
-        tr.setAttribute("id", `th-${i}`);
-        tr.append(th);
-        for (let j = 0; j < 8; j++) {
-            console.log(j);
-            var td = document.createElement("td");
-            td.setAttribute("id", `td-${i}-${j}`);
-            tr.append(td);
-        }
-        tableContent.append(th);
-    }
-}
-
-
 function calculateSizes() {
     console.log("sizes:");
     console.log(brandChosen);
@@ -372,8 +345,8 @@ async function handleQuestionnaire() {
 function handleChart() {
     console.log("handle chart");
     handleButtons();
-    handleStickyTableHeader();
     document.querySelector(".chart").style.display = "inherit";
+    handleStickyTableHeader();
 
     var cmSize = document.querySelector(".choicePack #choiceCm").value;
     var mmSize = document.querySelector(".choicePack #choiceMm").value;
@@ -458,18 +431,18 @@ function update_table(brandName = "") {
         skate_data = brands_table.table_data[my_size_brand];
     }
 
-    console.log(`my_size_mm: ${my_size_mm}`);
-    console.log(`my_size_cm: ${my_size_cm}`);
-    console.log(`my_size_mp: ${my_size_mp}`);
-    console.log(`my_size_mondo: ${my_size_mondo}`);
+    // console.log(`my_size_mm: ${my_size_mm}`);
+    // console.log(`my_size_cm: ${my_size_cm}`);
+    // console.log(`my_size_mp: ${my_size_mp}`);
+    // console.log(`my_size_mondo: ${my_size_mondo}`);
 
-    console.log("skate_data");
-    console.log(skate_data);
+    // console.log("skate_data");
+    // console.log(skate_data);
 
 
     let tableContent = document.querySelector(".conversionTableContent");
     //empty the table
-    tableContent.innerHTML="";
+    tableContent.innerHTML = "";
 
     brand_data.forEach((size_data) => {
         let tr = document.createElement("tr");
@@ -478,7 +451,7 @@ function update_table(brandName = "") {
         tr.append(th);
         //for each measurement we have in data, create a column with its value
         for (const [key, value] of Object.entries(size_data)) {
-            console.log(`${key}: ${value}`);
+            // console.log(`${key}: ${value}`);
             if (key != "psp_sizing_mp" && key != "psp_sizing_mondo") {//unused values
                 let td = document.createElement("td");
                 td.innerHTML = `${get_size_text(value)}`;
@@ -562,20 +535,23 @@ async function update_global_data() {
 
 function handleStickyTableHeader() {
     let header = document.querySelector("#chartHeader");
+    let content = document.querySelector(".conversionTableContent");
 
+    let sticky = header.getBoundingClientRect().top;
 
     document.addEventListener("scroll", () => {
-        let sticky = header.getBoundingClientRect().top;
-        // let headerOffset = header.offsetTop;
-
         console.log(window.pageYOffset);
         console.log(sticky);
+        // console.log(window.pageYOffset + sticky);
         console.log("--");
 
         if (window.pageYOffset > sticky) {
             header.classList.add("sticky");
+            content.classList.add("stickContent");
+
         } else {
             header.classList.remove("sticky");
+            content.classList.remove("stickContent");
         }
     });
 }

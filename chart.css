@@ -383,14 +383,19 @@ thead th {
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+}
+
+.stickContent:before {
+  position: fixed;
+  content:"@";
+  display:block;
+  /* line-height:12vh; */
+  height:12vh;
+  top:12vh;
+  text-indent:-99999px;
 }
 
 
-/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-#chartHeader + .conversionTableContent-wrapper {
-  padding-top: 10vh;
-}
 
 #testButton{
   width:5vw;
