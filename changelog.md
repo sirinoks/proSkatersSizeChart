@@ -1,3 +1,5 @@
+## V0.98 ##
+- Chart contents are now generated based on data
 ## V0.97 ##
 27 July 2023
 - Questionnaire and chart united into a single file
