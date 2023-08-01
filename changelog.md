@@ -1,4 +1,5 @@
 ## V0.98 ##
+31 July 2023
 - Chart contents are now generated based on data
 ## V0.97 ##
 27 July 2023
