@@ -107,7 +107,6 @@ DONE
                   </option>
 
                   <!-- dynamic content -->
-
                 </select>
               </div>
               <div class="error hidden">
@@ -177,7 +176,6 @@ DONE
                   <label for="choiceMondo">MONDO</label>
                   <input type="number" id="choiceMondo" class="choiceInput" />
                 </div>
-
               </div>
               <div class="error hidden">
                 <span class="errSelect">
@@ -235,7 +233,7 @@ DONE
           </div>
           <div class="conversionTable">
             <table>
-              <thead>
+              <thead id="chartHeader">
                 <tr>
                   <th rowspan="4" id="skateSize">Skate size</th>
                 </tr>
@@ -259,9 +257,11 @@ DONE
                   <th></th>
                 </tr>
               </thead>
-              <tbody class="conversionTableContent">
-                <!-- dynamic content -->
-              </tbody>
+              <div class="conversionTableContent-wrapper">
+                <tbody class="conversionTableContent">
+                  <!-- dynamic content -->
+                </tbody>
+              </div>
             </table>
           </div>
         </div>

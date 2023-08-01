@@ -380,6 +380,23 @@ thead th {
   display:none;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+#chartHeader + .conversionTableContent-wrapper {
+  padding-top: 10vh;
+}
+
+#testButton{
+  width:5vw;
+  height:5vh;
+}
+
 @media (min-height: 500px) {
   thead th {
     padding: 1vh;

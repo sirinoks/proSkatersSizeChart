@@ -231,8 +231,9 @@ function navigateToFormStep(stepNumber) {
 
 function test() {
     let testButton = document.querySelector("#testButton");
+    console.log("test");
     testButton.addEventListener("click", () => {
-        handleChoices();
+        handleChart();
     });
 }
 
@@ -371,6 +372,7 @@ async function handleQuestionnaire() {
 function handleChart() {
     console.log("handle chart");
     handleButtons();
+    handleStickyTableHeader();
     document.querySelector(".chart").style.display = "inherit";
 
     var cmSize = document.querySelector(".choicePack #choiceCm").value;
@@ -464,14 +466,26 @@ function update_table(brandName = "") {
     console.log("skate_data");
     console.log(skate_data);
 
-    //empty the table
-    document.querySelector(".conversionTableContent").innerHTML = '<tbody class="conversionTableContent"></tbody>';
 
     let tableContent = document.querySelector(".conversionTableContent");
+    //empty the table
+    tableContent.innerHTML="";
 
     brand_data.forEach((size_data) => {
-        var tr = document.createElement("tr");
-        tr.innerHTML = `<tr> <th>0</th> <td>${get_size_text(size_data.psp_sizing_us_w)}</td> <td>${get_size_text(size_data.psp_sizing_us_m)}</td> <td>${get_size_text(size_data.psp_sizing_us_j)}</td> <td>${get_size_text(size_data.psp_sizing_eu)}</td> <td>${get_size_text(size_data.psp_sizing_uk_w)}</td> <td>${get_size_text(size_data.psp_sizing_uk_m)}</td> <td>${get_size_text(size_data.psp_sizing_uk_j)}</td> <td>${get_size_text(size_data.psp_sizing_cm)}</td> </tr>`
+        let tr = document.createElement("tr");
+        let th = document.createElement("th");
+        th.innerHTML = "0";
+        tr.append(th);
+        //for each measurement we have in data, create a column with its value
+        for (const [key, value] of Object.entries(size_data)) {
+            console.log(`${key}: ${value}`);
+            if (key != "psp_sizing_mp" && key != "psp_sizing_mondo") {//unused values
+                let td = document.createElement("td");
+                td.innerHTML = `${get_size_text(value)}`;
+                tr.append(td);
+            }
+        }
+
         tableContent.append(tr);
     });
 }
@@ -482,7 +496,7 @@ async function psp_calculator_plugin_add_skateChoice(brandName) {
     let div = document.createElement("div");
     div.innerHTML = String(brandName);
     div.classList.add("skateChoice");
-    document.querySelector(".leftCol").prepend(div)
+    document.querySelector(".leftCol").append(div)
 }
 
 // Add brandChoice
@@ -546,8 +560,29 @@ async function update_global_data() {
     }
 }
 
+function handleStickyTableHeader() {
+    let header = document.querySelector("#chartHeader");
+
+
+    document.addEventListener("scroll", () => {
+        let sticky = header.getBoundingClientRect().top;
+        // let headerOffset = header.offsetTop;
+
+        console.log(window.pageYOffset);
+        console.log(sticky);
+        console.log("--");
+
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    });
+}
+
 async function run() {
     console.log("ready");
+    test();
     handleQuestionnaire();
 
     await update_global_data();
