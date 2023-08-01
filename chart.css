@@ -387,12 +387,20 @@ thead th {
 
 .stickContent:before {
   position: fixed;
-  content:"@";
-  display:block;
+  display:flex;
   /* line-height:12vh; */
   height:12vh;
   top:12vh;
   text-indent:-99999px;
+}
+
+/*
+To keep width of the tbody the same
+*/
+#fakeHeader{
+  display:none;
+  height:auto;
+  visibility: hidden;
 }
 
 

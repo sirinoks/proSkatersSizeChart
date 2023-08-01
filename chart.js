@@ -536,6 +536,7 @@ async function update_global_data() {
 function handleStickyTableHeader() {
     let header = document.querySelector("#chartHeader");
     let content = document.querySelector(".conversionTableContent");
+    let fake = document.querySelector("#fakeHeader");
 
     let sticky = header.getBoundingClientRect().top;
 
@@ -548,10 +549,13 @@ function handleStickyTableHeader() {
         if (window.pageYOffset > sticky) {
             header.classList.add("sticky");
             content.classList.add("stickContent");
+            fake.style.display="table-header-group";
 
         } else {
             header.classList.remove("sticky");
             content.classList.remove("stickContent");
+            fake.style.display="none";
+
         }
     });
 }
