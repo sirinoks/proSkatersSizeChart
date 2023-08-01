@@ -27,42 +27,21 @@ const calculatedData = [
     43
 ];
 const smallerDataPool = [3, 2, 56, 4, 2];
-const multipleArrayData = [
-    [0, 0, 0, 10.5, 0, 0, 0, 0, 16.5],
-    [0, 0, 0, 11, 0, 0, 0, 0, 17],
-    [0, 0, 0, 11.5, 0, 0, 0, 0, 17.5],
-    [0, 0, 0, 12, 0, 0, 0, 0, 18],
-    [0, 0, 0, 12.5, 0, 0, 0, 0, 18.5],
-    [0, 0, 0, 13, 0, 0, 0, 0, 19],
-    [0, 0, 0, 13.5, 0, 0, 0, 0, 20],
-    [0, 0, 0, 1, 0, 0, 0, 0, 20.5],
-    [0, 0, 0, 1.5, 0, 0, 0, 0, 21],
-    [0, 0, 0, 2, 0, 0, 0, 0, 21.5],
-    [0, 5, 0, 2.5, 0, 0, 0, 0, 22],
-    [0, 5.5, 0, 3.5, 0, 0, 0, 0, 22.5],
-    [0, 6, 0, 4.5, 0, 0, 0, 0, 23],
-    [0, 6.5, 0, 5, 0, 0, 0, 0, 23.5],
-    [0, 7, 6, 5.5, 0, 0, 0, 0, 24],
-    [0, 7.5, 6.5, 6, 0, 0, 0, 0, 24.5],
-    [0, 8, 7, 6.5, 0, 0, 0, 0, 25],
-    [0, 8.5, 7.5, 7, 0, 0, 0, 0, 25.5],
-    [0, 9, 8, 0, 0, 0, 0, 0, 26],
-    [0, 9.5, 8.5, 0, 0, 0, 0, 0, 26.5],
-    [0, 10, 9, 0, 0, 0, 0, 0, 27],
-    [0, 10.5, 9.5, 0, 0, 0, 0, 0, 27.5],
-    [0, 11, 10, 0, 0, 0, 0, 0, 28],
-    [0, 11.5, 10.5, 0, 0, 0, 0, 0, 28.5],
-    [0, 12, 11, 0, 0, 0, 0, 0, 29],
-    [0, 0, 11.5, 0, 0, 0, 0, 0, 29.5],
-    [0, 0, 12, 0, 0, 0, 0, 0, 30],
-    [0, 0, 12.5, 0, 0, 0, 0, 0, 30.5],
-    [0, 0, 13, 0, 0, 0, 0, 0, 31],
-    [0, 0, 14, 0, 0, 0, 0, 0, 32],
-    [0, 0, 15, 0, 0, 0, 0, 0, 33],
-    [0, 0, 16, 0, 0, 0, 0, 0, 33.5],
-    [0, 0, 17, 0, 0, 0, 0, 0, 34.5],
-    [0, 0, 18, 0, 0, 0, 0, 0, 35.5]
-];
+
+
+var brands_table = {};
+var brands_list = [];
+var brand_skates = [];
+var brand_shoes = [];
+var my_size_cm = 0;
+var my_size_mm = 0;
+var my_size_mp = 0;
+var my_size_mondo = 0;
+var my_size_brand = "";
+
+//Change this variable if you would like the table to be displayed on localhost
+var is_localhost = true;
+var local_host_data = {"plugin_brands_table":{"table_data":{"Puma":[{"psp_sizing_cm":"3","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"1","psp_sizing_mp":"2","psp_sizing_mondo":"3","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"1","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"2","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"3","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"}],"Adidas":[{"psp_sizing_cm":"16.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"10.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"17","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"11","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"17.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"11.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"18","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"12","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"18.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"12.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"19","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"13","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"20","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"13.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"20.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"1","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"21","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"1.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"21.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"2","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"22","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"5","psp_sizing_us_m":"0","psp_sizing_us_j":"2.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"22.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"5.5","psp_sizing_us_m":"0","psp_sizing_us_j":"3.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"23","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"6","psp_sizing_us_m":"0","psp_sizing_us_j":"4.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"23.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"6.5","psp_sizing_us_m":"0","psp_sizing_us_j":"5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"24","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"7","psp_sizing_us_m":"6","psp_sizing_us_j":"5.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"24.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"7.5","psp_sizing_us_m":"6.5","psp_sizing_us_j":"6","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"25","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"8","psp_sizing_us_m":"7","psp_sizing_us_j":"6.5","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"25.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"8.5","psp_sizing_us_m":"7.5","psp_sizing_us_j":"7","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"26","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"9","psp_sizing_us_m":"8","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"26.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"9.5","psp_sizing_us_m":"8.5","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"27","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"10","psp_sizing_us_m":"9","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"27.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"10.5","psp_sizing_us_m":"9.5","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"28","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"11","psp_sizing_us_m":"10","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"28.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"11.5","psp_sizing_us_m":"10.5","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"29","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"12","psp_sizing_us_m":"11","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"29.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"11.5","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"30","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"12","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"30.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"12.5","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"31","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"13","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"32","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"14","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"33","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"15","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"33.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"16","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"34.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"17","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"35.5","psp_sizing_mp":"0","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"18","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"},{"psp_sizing_cm":"3333","psp_sizing_mp":"333","psp_sizing_mondo":"0","psp_sizing_eu":"0","psp_sizing_us_w":"0","psp_sizing_us_m":"0","psp_sizing_us_j":"0","psp_sizing_uk_w":"0","psp_sizing_uk_m":"0","psp_sizing_uk_j":"0"}],"Seba - Skates":[{"psp_sizing_cm":"1","psp_sizing_mp":"2","psp_sizing_mondo":"3","psp_sizing_eu":"4","psp_sizing_us_w":"5","psp_sizing_us_m":"6","psp_sizing_us_j":"7","psp_sizing_uk_w":"8","psp_sizing_uk_m":"9","psp_sizing_uk_j":"0"}]}},"plugin_brands_list":["Adidas","Puma","Seba - Skates"]};
 
 function waitForElm(el) {
     return new Promise((resolve) => {
@@ -110,35 +89,6 @@ function createRows(rowAmount) {
     }
 }
 
-function populateRows(allRows) {
-    console.log("populating rows");
-    //put data into the table
-    for (let i = 0; i < multipleArrayData.length; i++) {
-        for (let j = 0; j < allRows[i].children.length; j++) {
-            //console.log(i, j);
-            //console.log(allRows[i].children[j]);
-            allRows[i].children[j].innerHTML = multipleArrayData[i][j];
-        }
-    }
-}
-
-//remove cells that have 0, make them empty
-function styleEmptyCells(allRows) {
-    allRows.forEach((row) => {
-        let cells = row.querySelectorAll("th,td");
-        cells.forEach((cell) => {
-            if (cell.textContent == "0") {
-                cell.innerText = "";
-            }
-        });
-    });
-}
-
-function removeExtraRows(allRows) {
-    for (let q = multipleArrayData.length; q < allRows.length; q++) {
-        allRows[q].remove();
-    }
-}
 
 function calculateSizes() {
     console.log("sizes:");
@@ -406,32 +356,203 @@ function modalNav() {
     });
 }
 
-function handleQuestionnaire(){
+async function handleQuestionnaire() {
+    console.log("handleQuestionnaire");
     handleButtons();
     handleChoices();
     modalNav();
     measurePoints();
-    document.querySelector("#finalButton").addEventListener("click", ()=>{
+    document.querySelector("#finalButton").addEventListener("click", () => {
         handleChart();
     });
 }
 
-function handleChart(){
+function handleChart() {
     console.log("handle chart");
-    document.querySelector(".chart").style.display="inherit";
-    //createRows(multipleArrayData.length);
-    let allRows = document.querySelectorAll(".conversionTableContent tr");
-    removeExtraRows(allRows);
+    document.querySelector(".chart").style.display = "inherit";
 
-    populateRows(allRows);
+    var cmSize = document.querySelector(".choicePack #choiceCm").value;
+    var mmSize = document.querySelector(".choicePack #choiceMm").value;
+    var mpSize = document.querySelector(".choicePack #choiceMp").value;
+    var mondoSize = document.querySelector(".choicePack #choiceMondo").value;
+    var currentSize = document.querySelectorAll(".choicePack:not(.d-none)")[0];
+    var selectedBrand = document.querySelector("#brand").selectedOptions[0].value;
 
-    styleEmptyCells(allRows);
+    set_global_size_choise(cmSize, mmSize, mpSize, mondoSize, selectedBrand, currentSize);
+    update_table();
 }
 
-function run() {
-    console.log("ready");
+function set_global_size_choise(cm, mm, mp, mondo, brand, currentSize){
+    console.log("set_global_size_choise");
 
+    my_size_brand = brand;
+    if (currentSize.classList.contains("choiceCm")){
+        my_size_cm = cm;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+
+        //if 160+ probably user wanted MM
+        if (my_size_cm > 160){
+            my_size_cm = 0;
+            my_size_mm = cm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMm")){
+        my_size_cm = 0;
+        my_size_mm = mm;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+        
+        //if 160 probably user wanted CM
+        if (my_size_mm < 160){
+            my_size_mm = 0;
+            my_size_cm = mm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMp")){
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = mp;
+        my_size_mondo = 0;
+    }
+    else if (currentSize.classList.contains("choiceMondo")){
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = mondo;
+    }
+}
+
+async function handleEventListeners() {
+    console.log("handleEventListeners");
+    // update table on brandChoice change
+    document.querySelectorAll(".brandChoice").forEach(brand => 
+        brand.addEventListener("click", (event) => update_table(event.target.innerText))
+      )
+}
+
+
+// get size text, if size is 0, return empty string
+function get_size_text(size) {
+    return (size > 0) ? size : "";
+}
+
+// change table 
+function update_table(brandName = "") {
+    var brand_data = {};
+    var skate_data = {};
+
+    if(brandName.length > 0){
+        brand_data = brands_table.table_data[brandName]
+    }
+    else {
+        brand_data = brands_table.table_data[brand_shoes[0]]
+    }
+
+    if (my_size_brand.length > 0) {
+        skate_data = brands_table.table_data[my_size_brand];
+    }
+    
+    console.log(`my_size_mm: ${my_size_mm}`);
+    console.log(`my_size_cm: ${my_size_cm}`);
+    console.log(`my_size_mp: ${my_size_mp}`);
+    console.log(`my_size_mondo: ${my_size_mondo}`);
+
+    console.log("skate_data");
+    console.log(skate_data);
+
+    //empty the table
+    document.querySelector(".conversionTableContent").innerHTML = '<tbody class="conversionTableContent"></tbody>';
+
+    let tableContent = document.querySelector(".conversionTableContent");
+
+    brand_data.forEach((size_data) => {
+        var tr = document.createElement("tr");
+        tr.innerHTML = `<tr> <th>0</th> <td>${get_size_text(size_data.psp_sizing_us_w)}</td> <td>${get_size_text(size_data.psp_sizing_us_m)}</td> <td>${get_size_text(size_data.psp_sizing_us_j)}</td> <td>${get_size_text(size_data.psp_sizing_eu)}</td> <td>${get_size_text(size_data.psp_sizing_uk_w)}</td> <td>${get_size_text(size_data.psp_sizing_uk_m)}</td> <td>${get_size_text(size_data.psp_sizing_uk_j)}</td> <td>${get_size_text(size_data.psp_sizing_cm)}</td> </tr>`
+        tableContent.append(tr);
+    });
+}
+
+
+// Add skateChoice
+async function psp_calculator_plugin_add_skateChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = `<div class="skateChoice">${brandName}</div>`;
+    document.querySelector(".leftCol").append(div)
+}
+
+// Add brandChoice
+async function psp_calculator_plugin_add_brandChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = `<div class="brandChoice">${brandName}</div>`;
+    document.querySelector(".brandContainer").append(div)
+}
+
+// Add skateBrandChoice for qestionnaire
+async function psp_calculator_plugin_add_skateBrandChoice(brandName) {
+    let option = document.createElement("option");
+    option.innerHTML = `<option value="${brandName}">${brandName}</option>`;
+    document.querySelector("#brand").append(option)
+}
+
+// Update global data from WordPress DB
+async function update_global_data() {
+    console.log("update_global_data");
+    var wp_data = {};
+    
+    //loading data from local_host_data or from WordPress DB
+    if (is_localhost) {
+        wp_data = local_host_data;
+    }
+    else {
+        console.log("is pspCalculatorPluginConfig loaded?");
+        while (typeof pspCalculatorPluginConfig === 'undefined') {
+          console.log("checking...");
+          await sleep(200);
+        }
+        wp_data = pspCalculatorPluginConfig;
+        console.log("pspCalculatorPluginConfig loaded.");
+    }
+
+    console.log("Loading table from wp_data...");
+    brands_table = wp_data.plugin_brands_table;
+    if (brands_table.length == 0) {
+        brands_table = {};
+    }
+
+    console.log("Loading list from wp_data...");
+    brands_list = wp_data.plugin_brands_list;
+    if (brands_list.length == 0) {
+        brands_list = [];
+    }
+
+    if (brands_list.length > 0) {
+        brands_list.forEach(function (brandName) {
+            if (brandName.toLowerCase().includes("skate")) {
+                psp_calculator_plugin_add_skateChoice(brandName);
+                psp_calculator_plugin_add_skateBrandChoice(brandName);
+                brand_skates.push(brandName);
+            }
+            else {
+                psp_calculator_plugin_add_brandChoice(brandName);
+                brand_shoes.push(brandName);
+            }
+        });
+    }
+}
+
+async function run() {
+    console.log("ready");
     handleQuestionnaire();
+
+    await update_global_data();
+    // We have to wait for the global data to be loaded
+    handleEventListeners();
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 //run everything after the page is loaded
