@@ -1,0 +1,1405 @@
+<!--
+Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
+DONE
+  Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
+  Maybe we will also need a drop down of the skate model that the client is considering or something like that.
+  If a table is easier, the correct row should be highlighted
+-->
+
+<html>
+  <body>
+    <div class="questionnaire">
+      <button id="testButton">Test</button>
+      <ul class="form-stepper form-stepper-horizontal">
+        <!-- Step 1 -->
+        <li class="form-stepper-active text-center form-stepper-list" step="1">
+          <a class="mx-2">
+            <span class="form-stepper-circle">
+              <span>1</span>
+            </span>
+            <div class="label">Skates</div>
+          </a>
+        </li>
+        <!-- Step 2 -->
+        <li
+          class="form-stepper-unfinished text-center form-stepper-list"
+          step="2"
+        >
+          <a class="mx-2">
+            <span class="form-stepper-circle text-muted">
+              <span>2</span>
+            </span>
+            <div class="label text-muted">Brand</div>
+          </a>
+        </li>
+        <!-- Step 3 -->
+        <li
+          class="form-stepper-unfinished text-center form-stepper-list"
+          step="3"
+        >
+          <a class="mx-2">
+            <span class="form-stepper-circle text-muted">
+              <span>3</span>
+            </span>
+            <div class="label text-muted">Measurements</div>
+          </a>
+        </li>
+      </ul>
+
+      <div class="chartForm">
+        <div class="slide slide1">
+          <fieldset>
+            <div class="formContent">
+              <div class="prompt">
+                <p>Do you currently have inline skates/rollerblades?</p>
+              </div>
+              <div class="answer">
+                <div class="radioSwitch">
+                  <input
+                    type="radio"
+                    name="haveChoice"
+                    id="haveChoiceYes"
+                    value="haveChoiceYes"
+                    class="choiceInput"
+                  />
+                  <label for="haveChoiceYes">Yes</label>
+                  <input
+                    type="radio"
+                    name="haveChoice"
+                    id="haveChoiceNo"
+                    value="haveChoiceNo"
+                    class="choiceInput"
+                  />
+                  <label for="haveChoiceNo">No</label>
+                </div>
+              </div>
+              <div class="error">
+                <span class="errChoice"> Please select an option </span>
+              </div>
+            </div>
+            <div class="navButtons">
+              <div class="navButtonsContainer">
+                <button
+                  class="navButton navNext"
+                  currentStepNumber="1"
+                  targetStepNumber="2"
+                  disabled="true"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="slide slide2 d-none">
+          <fieldset>
+            <div class="formContent">
+              <div class="prompt">
+                <label for="brand"> Which brand? </label>
+              </div>
+              <div class="answer">
+                <select name="brand" class="choiceInput" id="brand">
+                  <option disabled selected value>
+                    -- select an option --
+                  </option>
+
+                  <!-- dynamic content -->
+                </select>
+              </div>
+              <div class="error hidden">
+                <span class="errChoice"> Please select a brand </span>
+              </div>
+            </div>
+            <div class="navButtons">
+              <div class="navButtonsContainer">
+                <button
+                  class="navButton"
+                  currentStepNumber="2"
+                  targetStepNumber="1"
+                >
+                  Back
+                </button>
+                <button
+                  class="navButton navNext"
+                  currentStepNumber="2"
+                  targetStepNumber="3"
+                  disabled="true"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="slide slide3 d-none">
+          <fieldset>
+            <div class="formContent">
+              <div class="prompt">
+                <p>Please enter</p>
+              </div>
+
+              <div class="answer">
+                <div class="measurePoints">
+                  <button class="measurePoint choiceInput" choice="choiceMm">
+                    MM
+                  </button>
+                  <button class="measurePoint choiceInput" choice="choiceCm">
+                    CM
+                  </button>
+                  <button class="measurePoint choiceInput" choice="choiceMp">
+                    MP
+                  </button>
+                  <button class="measurePoint choiceInput" choice="choiceMondo">
+                    MONDO
+                  </button>
+                </div>
+                <div class="choicePack choiceMm d-none">
+                  <label for="choiceMm">MM</label>
+                  <input type="number" id="choiceMm" class="choiceInput" />
+                </div>
+
+                <div class="choicePack choiceCm d-none">
+                  <label for="choiceCm">CM</label>
+                  <input type="number" id="choiceCm" class="choiceInput" />
+                </div>
+
+                <div class="choicePack choiceMp d-none">
+                  <label for="choiceMp">MP</label>
+                  <input type="number" id="choiceMp" class="choiceInput" />
+                </div>
+
+                <div class="choicePack choiceMondo d-none">
+                  <label for="choiceMondo">MONDO</label>
+                  <input type="number" id="choiceMondo" class="choiceInput" />
+                </div>
+              </div>
+              <div class="error hidden">
+                <span class="errSelect">
+                  Please select unit of measurement
+                </span>
+                <span class="errChoice"> Please enter a measurement </span>
+              </div>
+            </div>
+
+            <div class="navButtons">
+              <div class="navButtonsContainer">
+                <button
+                  class="navButton"
+                  currentStepNumber="3"
+                  targetStepNumber="2"
+                >
+                  Back
+                </button>
+                <button
+                  class="navButton navNext"
+                  id="finalButton"
+                  disabled="false"
+                >
+                  Show table!
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <!--
+    Once the brand of skates or shoes selected -> please enter MM or CM or MONDO / MP in three different fields
+    DONE
+      Also, could be good to have a width adjustment option that will highlight the brand that is most suitable...
+      Maybe we will also need a drop down of the skate model that the client is considering or something like that.
+      If a table is easier, the correct row should be highlighted
+    -->
+      </div>
+    </div>
+
+    <div class="chart">
+      <div class="container">
+        <div class="leftCol">
+          <h2>Skates</h2>
+          <div>
+            <!-- dynamic content -->
+          </div>
+        </div>
+        <div class="rightCol">
+          <div class="brands">
+            <h2>Brands</h2>
+            <div class="brandContainer">
+              <!-- dynamic content -->
+              <div class="selectSkateStyle"></div>
+            </div>
+          </div>
+          <div class="conversionTable">
+            <table>
+              <thead id="chartHeader">
+                <tr>
+                  <th rowspan="4" id="skateSize">Skate size</th>
+                </tr>
+                <tr>
+                  <th colspan="8" id="shoeSize">Shoe size</th>
+                </tr>
+                <tr>
+                  <th colspan="3">US</th>
+                  <th>EU</th>
+                  <th colspan="3">UK</th>
+                  <th>CM</th>
+                </tr>
+                <tr>
+                  <th>Women</th>
+                  <th>Men</th>
+                  <th>Junior</th>
+                  <th></th>
+                  <th>Women</th>
+                  <th>Men</th>
+                  <th>Junior</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <thead id="fakeHeader">
+                <tr>
+                  <th rowspan="4" id="skateSize">Skate size</th>
+                </tr>
+                <tr>
+                  <th colspan="8" id="shoeSize">Shoe size</th>
+                </tr>
+                <tr>
+                  <th colspan="3">US</th>
+                  <th>EU</th>
+                  <th colspan="3">UK</th>
+                  <th>CM</th>
+                </tr>
+                <tr>
+                  <th>Women</th>
+                  <th>Men</th>
+                  <th>Junior</th>
+                  <th></th>
+                  <th>Women</th>
+                  <th>Men</th>
+                  <th>Junior</th>
+                  <th></th>
+                </tr>
+              </thead>
+                <tbody class="conversionTableContent">
+                  <!-- dynamic content -->
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="chart.js"></script>
+</html>
+
+<script>
+//data
+let brandChosen = "";
+let skateChosen = "";
+
+const calculatedData = [
+    2,
+    5,
+    6,
+    2,
+    15,
+    6,
+    34,
+    64,
+    23,
+    2,
+    54,
+    23,
+    643,
+    23,
+    643,
+    23,
+    643,
+    32,
+    123,
+    643,
+    75,
+    43
+];
+const smallerDataPool = [3, 2, 56, 4, 2];
+
+
+var brands_table = {};
+var brands_list = [];
+var brand_skates = [];
+var brand_shoes = [];
+var my_size_cm = 0;
+var my_size_mm = 0;
+var my_size_mp = 0;
+var my_size_mondo = 0;
+var my_size_brand = "";
+
+//Change this variable if you would like the table to be displayed on localhost
+var is_localhost = false;
+var local_host_data = {};
+
+function waitForElm(el) {
+    return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver((mutations) => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+function calculateSizes() {
+    console.log("sizes:");
+    console.log(brandChosen);
+    console.log(skateChosen);
+}
+
+function checkChosen(category, choice) {
+    console.log(category);
+    console.log(choice);
+
+    if (
+        category == "brand" &&
+        document.querySelectorAll(".brandChoice.clicked") > 0
+    ) {
+        console.log("here1");
+        brandChosen = choice;
+        calculateSizes();
+    } else if (
+        category == "skate" &&
+        document.querySelectorAll(".skateChoice.clicked") > 0
+    ) {
+        console.log("here2");
+
+        skateChosen = choice;
+        calculateSizes();
+    }
+
+    //Call function to recalculate
+}
+
+function animateSelection(ev, button) {
+    let select = document.querySelector(".selectSkateStyle");
+    let rectSelect = button.getBoundingClientRect();
+    //Need to adjust pixel position to the parent element
+    let rectParent = select.parentElement.getBoundingClientRect();
+    //move to the button's position
+    select.style.transform = `translateX(${rectSelect.left - rectParent.left}px)`;
+    //transform to adjust to the button's width and height
+    select.style.width = `${rectSelect.width}px`;
+    select.style.height = `${rectSelect.height}px`;
+
+}
+
+function handleSkateButtons() {
+    let skateButtons = document.querySelectorAll(".skateChoice");
+    skateButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            //if you're not clicking on an already selected element and if there are no other clicked elements
+            if (
+                !button.classList.contains("clicked") &&
+                document.querySelectorAll(".skateChoice.clicked").length > 0
+            ) {
+                document.querySelectorAll(".skateChoice.clicked").forEach((btn) => {
+                    //remove all the elements
+                    btn.classList.remove("clicked");
+                });
+            }
+            button.classList.toggle("clicked");
+            checkChosen("skate", button.innerText);
+        });
+    });
+}
+
+function handleBrandButtons() {
+    let brandButtons = document.querySelectorAll(".brandChoice");
+
+    brandButtons.forEach((button) => {
+        button.addEventListener("click", (ev) => {
+            //if you're not clicking on an already selected element and if there are no other clicked elements
+            if (
+                !button.classList.contains("clicked") &&
+                document.querySelectorAll(".brandChoice.clicked").length > 0
+            ) {
+                document.querySelectorAll(".brandChoice.clicked").forEach((btn) => {
+                    //remove all the elements
+                    btn.classList.remove("clicked");
+                });
+            }
+            button.classList.toggle("clicked");
+            checkChosen("brand", button.innerText);
+            console.log("animate active");
+            animateSelection(ev, button);
+        });
+    });
+}
+
+function handleButtons() {
+    console.log("handle buttons active");
+    handleSkateButtons();
+    handleBrandButtons();
+}
+
+
+
+
+//select all form navigation buttons, and loop through them
+function navigateToFormStep(stepNumber) {
+    //hide all form steps.
+    document.querySelectorAll(".slide").forEach((formStepElement) => {
+        formStepElement.classList.add("d-none");
+    });
+
+    //mark all form steps as unfinished
+    document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+        formStepHeader.classList.add("form-stepper-unfinished");
+        formStepHeader.classList.remove(
+            "form-stepper-active",
+            "form-stepper-completed"
+        );
+    });
+
+    //show the current form step (as passed to the function)
+    document.querySelector(".slide" + stepNumber).classList.remove("d-none");
+
+    //select the form step circle (progress bar)
+    const formStepCircle = document.querySelector(
+        'li[step="' + stepNumber + '"]'
+    );
+    //mark the current form step as active
+    formStepCircle.classList.remove(
+        "form-stepper-unfinished",
+        "form-stepper-completed"
+    );
+    formStepCircle.classList.add("form-stepper-active");
+
+    //loop through each form step circles
+    for (let index = 0; index < stepNumber; index++) {
+        const formStepCircle = document.querySelector('li[step="' + index + '"]');
+        if (formStepCircle) {
+            //mark the form step as completed.
+            formStepCircle.classList.remove(
+                "form-stepper-unfinished",
+                "form-stepper-active"
+            );
+            formStepCircle.classList.add("form-stepper-completed");
+        }
+    }
+}
+
+function test() {
+    let testButton = document.querySelector("#testButton");
+    console.log("test");
+    testButton.addEventListener("click", () => {
+        handleChart();
+    });
+}
+
+//Checks inputs if any were selected/entered. Returns true if there was data.
+function checkInput(clicked) {
+    let status = false;
+    if (clicked.nodeName == "INPUT") {
+        if (clicked.getAttribute("type") == "radio") {
+            //For yes/no choices, if one is checked - it's valid
+            status = clicked.checked;
+        } else if (clicked.getAttribute("type") == "number") {
+            //The input is valid if there is a number entered
+            status = clicked.value.length > 0;
+        }
+    } else if (clicked.nodeName == "SELECT") {
+        status = clicked.value;
+    } else if (clicked.nodeName == "BUTTON") {
+        //for the measure point buttons, reset values for inputs when we change input mode
+        let ch = clicked.getAttribute("choice");
+        let corr = document.querySelector(`.${ch}`);
+
+        //reset input value that corresponds to the input type selected
+        corr.querySelector("input").value = "";
+        //reset validation
+        status = false;
+    }
+    return status;
+}
+
+//scans for choices, puts listeners onto them
+function handleChoices() {
+    let answers = document.querySelectorAll(".answer .choiceInput");
+
+    answers.forEach((answer) => {
+        let parentSlide = answer.closest(".slide");
+
+        let nav = parentSlide.querySelector(".navNext");
+        //let localError = parentSlide.querySelector(".error");
+
+        //For inputs of measure units, we add a listener to any change in the input box
+        if (answer.nodeName == "INPUT" && answer.getAttribute("type") == "number") {
+            answer.addEventListener("input", () => {
+                nav.disabled = !checkInput(answer);
+            })
+        } else {//for all other buttons etc, it's just click
+            answer.addEventListener("click", () => {
+                nav.disabled = !checkInput(answer);
+            });
+        }
+    });
+}
+
+//Error display - in case we have error functionality (we don't rn)
+function runError(borderArea, message) {
+    borderArea.classList.add("errorArea");
+    //console.log(borderArea);
+
+    //console.log(message);
+    // let findD = document.querySelector(`.${message}`);
+    //console.log(findD);
+}
+
+//When the form is complete, collect the data to export
+function collectData() { }
+
+//checks if on slide1 user selected no. Then we need to skip step 2
+function slideOneChoiceNo() {
+    return document.querySelector("#haveChoiceNo").checked;
+}
+
+//slide3 button and measure points showing up functionality
+function measurePoints() {
+    document.querySelectorAll(".measurePoint").forEach((choiceButton) => {
+        choiceButton.addEventListener("click", () => {
+            let choice = choiceButton.getAttribute("choice");
+
+            if (
+                !choiceButton.classList.contains("clicked") &&
+                document.querySelectorAll(".measurePoint.clicked").length > 0
+            ) {
+                document.querySelectorAll(".measurePoint.clicked").forEach((btn) => {
+                    //remove all the elements
+                    btn.classList.remove("clicked");
+                    let ch = btn.getAttribute("choice");
+                    let corr = document.querySelector(`.${ch}`);
+                    corr.classList.add("d-none");
+                });
+            }
+
+            choiceButton.classList.add("clicked");
+
+            document.querySelector(`.${choice}`).classList.remove("d-none");
+        });
+    });
+}
+
+function modalNav() {
+    document.querySelectorAll(".navButton:not(#finalButton)").forEach((formNavigationBtn) => {
+        formNavigationBtn.addEventListener("click", () => {
+            const targetStepNumber = parseInt(
+                formNavigationBtn.getAttribute("targetStepNumber")
+            );
+            const currentStep = parseInt(
+                formNavigationBtn.getAttribute("currentStepNumber")
+            );
+
+            //if the button is next
+            if (currentStep < targetStepNumber) {
+                //skip step2 if the user doesn't have skates
+                if (currentStep == 1 && slideOneChoiceNo()) {
+                    navigateToFormStep(targetStepNumber + 1);
+                } else {
+                    navigateToFormStep(targetStepNumber);
+                }
+            } else {
+                if (currentStep == 3 && slideOneChoiceNo()) {
+                    navigateToFormStep(targetStepNumber - 1);
+                } else {
+                    navigateToFormStep(targetStepNumber);
+                }
+            }
+        });
+    });
+}
+
+async function handleQuestionnaire() {
+    console.log("handleQuestionnaire");
+    handleChoices();
+    modalNav();
+    measurePoints();
+    document.querySelector("#finalButton").addEventListener("click", () => {
+        handleChart();
+    });
+}
+
+function handleChart() {
+    console.log("handle chart");
+    handleButtons();
+    document.querySelector(".chart").style.display = "inherit";
+    handleStickyTableHeader();
+
+    var cmSize = document.querySelector(".choicePack #choiceCm").value;
+    var mmSize = document.querySelector(".choicePack #choiceMm").value;
+    var mpSize = document.querySelector(".choicePack #choiceMp").value;
+    var mondoSize = document.querySelector(".choicePack #choiceMondo").value;
+    var currentSize = document.querySelectorAll(".choicePack:not(.d-none)")[0];
+    var selectedBrand = document.querySelector("#brand").selectedOptions[0].value;
+
+    set_global_size_choise(cmSize, mmSize, mpSize, mondoSize, selectedBrand, currentSize);
+    update_table();
+}
+
+function set_global_size_choise(cm, mm, mp, mondo, brand, currentSize) {
+    console.log("set_global_size_choise");
+
+    my_size_brand = brand;
+    if (currentSize.classList.contains("choiceCm")) {
+        my_size_cm = cm;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+
+        //if 160+ probably user wanted MM
+        if (my_size_cm > 160) {
+            my_size_cm = 0;
+            my_size_mm = cm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMm")) {
+        my_size_cm = 0;
+        my_size_mm = mm;
+        my_size_mp = 0;
+        my_size_mondo = 0;
+
+        //if 160 probably user wanted CM
+        if (my_size_mm < 160) {
+            my_size_mm = 0;
+            my_size_cm = mm;
+        }
+    }
+    else if (currentSize.classList.contains("choiceMp")) {
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = mp;
+        my_size_mondo = 0;
+    }
+    else if (currentSize.classList.contains("choiceMondo")) {
+        my_size_cm = 0;
+        my_size_mm = 0;
+        my_size_mp = 0;
+        my_size_mondo = mondo;
+    }
+}
+
+async function handleEventListeners() {
+    console.log("handleEventListeners");
+    // update table on brandChoice change
+    document.querySelectorAll(".brandChoice").forEach(brand =>
+        brand.addEventListener("click", (event) => update_table(event.target.innerText))
+    )
+}
+
+
+// get size text, if size is 0, return empty string
+function get_size_text(size) {
+    return (size > 0) ? size : "";
+}
+
+// change table 
+function update_table(brandName = "") {
+    var brand_data = {};
+    var skate_data = {};
+
+    if (brandName.length > 0) {
+        brand_data = brands_table.table_data[brandName]
+    }
+    else {
+        brand_data = brands_table.table_data[brand_shoes[0]]
+    }
+
+    if (my_size_brand.length > 0) {
+        skate_data = brands_table.table_data[my_size_brand];
+    }
+
+    // console.log(`my_size_mm: ${my_size_mm}`);
+    // console.log(`my_size_cm: ${my_size_cm}`);
+    // console.log(`my_size_mp: ${my_size_mp}`);
+    // console.log(`my_size_mondo: ${my_size_mondo}`);
+
+    // console.log("skate_data");
+    // console.log(skate_data);
+
+
+    let tableContent = document.querySelector(".conversionTableContent");
+    //empty the table
+    tableContent.innerHTML = "";
+
+    brand_data.forEach((size_data) => {
+        let tr = document.createElement("tr");
+        let th = document.createElement("th");
+        th.innerHTML = "0";
+        tr.append(th);
+        //for each measurement we have in data, create a column with its value
+        for (const [key, value] of Object.entries(size_data)) {
+            // console.log(`${key}: ${value}`);
+            if (key != "psp_sizing_mp" && key != "psp_sizing_mondo") {//unused values
+                let td = document.createElement("td");
+                td.innerHTML = `${get_size_text(value)}`;
+                tr.append(td);
+            }
+        }
+
+        tableContent.append(tr);
+    });
+}
+
+
+// Add skateChoice
+async function psp_calculator_plugin_add_skateChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = String(brandName);
+    div.classList.add("skateChoice");
+    document.querySelector(".leftCol").append(div)
+}
+
+// Add brandChoice
+async function psp_calculator_plugin_add_brandChoice(brandName) {
+    let div = document.createElement("div");
+    div.innerHTML = String(brandName);
+    div.classList.add("brandChoice");
+    document.querySelector(".brandContainer").prepend(div)
+}
+
+// Add skateBrandChoice for questionnaire
+async function psp_calculator_plugin_add_skateBrandChoice(brandName) {
+    let option = document.createElement("option");
+    option.innerHTML = `<option value="${brandName}">${brandName}</option>`;
+    document.querySelector("#brand").append(option)
+}
+
+// Update global data from WordPress DB
+async function update_global_data() {
+    console.log("update_global_data");
+    var wp_data = {};
+
+    //loading data from local_host_data or from WordPress DB
+    if (is_localhost) {
+        wp_data = local_host_data;
+    }
+    else {
+        console.log("is pspCalculatorPluginConfig loaded?");
+        while (typeof pspCalculatorPluginConfig === 'undefined') {
+            console.log("checking...");
+            await sleep(200);
+        }
+        wp_data = pspCalculatorPluginConfig;
+        console.log("pspCalculatorPluginConfig loaded.");
+    }
+
+    console.log("Loading table from wp_data...");
+    brands_table = wp_data.plugin_brands_table;
+    if (brands_table.length == 0) {
+        brands_table = {};
+    }
+
+    console.log("Loading list from wp_data...");
+    brands_list = wp_data.plugin_brands_list;
+    if (brands_list.length == 0) {
+        brands_list = [];
+    }
+
+    if (brands_list.length > 0) {
+        brands_list.forEach(function (brandName) {
+            if (brandName.toLowerCase().includes("skate")) {
+                psp_calculator_plugin_add_skateChoice(brandName);
+                psp_calculator_plugin_add_skateBrandChoice(brandName);
+                brand_skates.push(brandName);
+            }
+            else {
+                psp_calculator_plugin_add_brandChoice(brandName);
+                brand_shoes.push(brandName);
+            }
+        });
+    }
+}
+
+function handleStickyTableHeader() {
+    let header = document.querySelector("#chartHeader");
+    let content = document.querySelector(".conversionTableContent");
+    let fake = document.querySelector("#fakeHeader");
+
+    let sticky = header.getBoundingClientRect().top;
+
+    document.addEventListener("scroll", () => {
+        console.log(window.pageYOffset);
+        console.log(sticky);
+        // console.log(window.pageYOffset + sticky);
+        console.log("--");
+
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+            content.classList.add("stickContent");
+            fake.style.display="table-header-group";
+
+        } else {
+            header.classList.remove("sticky");
+            content.classList.remove("stickContent");
+            fake.style.display="none";
+
+        }
+    });
+}
+
+async function run() {
+    console.log("ready");
+    test();
+    handleQuestionnaire();
+
+    await update_global_data();
+    // We have to wait for the global data to be loaded
+    handleEventListeners();
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+//run everything after the page is loaded
+document.addEventListener("DOMContentLoaded", run());
+
+</script>
+
+<style>
+/*
+https://levelup.gitconnected.com/create-a-multi-step-form-using-html-css-and-javascript-30aca5c062fc
+*/
+#primary {
+  display: flex;
+}
+
+a,
+a:hover {
+  color: black;
+}
+
+.chartForm {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.chartForm .slide {
+  background-color: rgba(200, 200, 200, 0.3);
+  width: 40vw;
+}
+
+.prompt p {
+  margin: 0;
+}
+
+.slide fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 1vh 1vw;
+}
+
+.navButton {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #34495e;
+  background-color: #34495e;
+  color: white;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.navButton:disabled {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  border: 1px solid #34495e;
+  background-color: #34495e;
+}
+
+/*Form stepper*/
+.d-none {
+  display: none;
+}
+
+ul.form-stepper {
+  width: 50vw;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+}
+
+ul.form-stepper .form-stepper-circle {
+  position: relative;
+}
+ul.form-stepper .form-stepper-circle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.form-stepper-horizontal {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+ul.form-stepper > li:not(:last-of-type) {
+  margin-bottom: 0.625rem;
+  -webkit-transition: margin-bottom 0.4s;
+  -o-transition: margin-bottom 0.4s;
+  transition: margin-bottom 0.4s;
+}
+
+.form-stepper-horizontal li {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.form-stepper-horizontal a {
+  width: 3vw;
+}
+.form-stepper-horizontal li:not(:last-child):after {
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 1px;
+  content: "";
+  top: 32%;
+  width: 20vw;
+}
+.form-stepper-horizontal li:after {
+  background-color: #dee2e6;
+}
+.form-stepper-horizontal li.form-stepper-completed:after {
+  background-color: #34495e;
+}
+.form-stepper-horizontal li:last-child {
+  flex: unset;
+}
+ul.form-stepper li a .form-stepper-circle {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 0;
+  line-height: 1.7rem;
+  text-align: center;
+  background-color: #efefef;
+  border-radius: 50%;
+}
+.form-stepper .form-stepper-active .form-stepper-circle {
+  background-color: #34495e;
+  color: #fff;
+}
+.form-stepper .form-stepper-active .label {
+  color: #34495e;
+}
+.form-stepper .form-stepper-active .form-stepper-circle:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+.form-stepper .form-stepper-unfinished .form-stepper-circle {
+  background-color: #f8f7ff;
+}
+.form-stepper .form-stepper-completed .form-stepper-circle {
+  background-color: #0e9594;
+  color: #fff;
+}
+.form-stepper .form-stepper-completed .label {
+  color: #0e9594;
+}
+.form-stepper .form-stepper-completed .form-stepper-circle:hover {
+  background-color: #0e9594;
+  color: #fff;
+}
+.form-stepper .form-stepper-active span.text-muted {
+  color: #fff;
+}
+.form-stepper .form-stepper-completed span.text-muted {
+  color: #fff;
+}
+.form-stepper .label {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+.form-stepper a {
+  cursor: default;
+}
+/*Form stepper end*/
+
+.measurePoints {
+  display: flex;
+  flex-direction: row;
+}
+
+.measurePoint {
+  background-color: rgba(0, 0, 0, 0.06694560669);
+  border: 1px solid #ddd;
+  margin: 3px 3px 3px 0;
+  padding: 3px 4px;
+  line-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.measurePoint:hover {
+  background-color: rgba(0, 0, 0, 0.07694560669);
+  border-color: #34495e;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin: 1vh 1vw;
+  min-height: 12vh;
+}
+
+.navButtons {
+  align-self: flex-end;
+  width: 100%;
+  min-height: 5vh;
+}
+
+.navButtonsContainer .navNext {
+  align-self: flex-end;
+}
+
+.navButtonsContainer {
+  margin: 1vh 1vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+  Make sure the next button in the first slide is properly placed
+  */
+.navButtons .navNext:only-child {
+  margin-left: auto;
+}
+
+#finalButton:hover:enabled {
+  background-color: #dc9814;
+}
+
+/*
+  Radio switch 1st slide
+  */
+.radioSwitch {
+  display: flex;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.radioSwitch input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.radioSwitch label {
+  background-color: rgba(0, 0, 0, 0.06694560669);
+  text-align: center;
+  padding: 1vh 1vw;
+  border: 1px solid #ddd;
+  transition: all 0.1s ease-in-out;
+}
+
+.radioSwitch label:hover {
+  background-color: rgba(0, 0, 0, 0.07694560669);
+  border-color: #34495e;
+}
+
+.radioSwitch label:hover {
+  cursor: pointer;
+}
+
+.radioSwitch input:checked + label {
+  background-color: #34495e;
+  box-shadow: none;
+  color: white;
+}
+
+button.measurePoint {
+  transition: all 0.1s ease-in-out;
+}
+
+.measurePoint.clicked {
+  background-color: #34495e;
+  color: white;
+}
+
+.error {
+  color: rgb(190, 0, 0);
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+
+.errorArea {
+  border: solid 1px rgb(190, 0, 0);
+}
+
+@media (max-width: 1300px) {
+  .form-stepper-horizontal {
+    display: none;
+  }
+
+  .chartForm * {
+    font-size: 1.2rem;
+  }
+
+  .chartForm .slide {
+    width: 100vw;
+  }
+
+  .chartForm .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    min-height: 40vh;
+  }
+
+  .chartForm .navButtons {
+    min-height: 6vh;
+  }
+
+  .chartForm .slide1 label,
+  .chartForm .slide3 .measurePoint {
+    padding: 3vh 3vw;
+  }
+
+  .chartForm .slide3 .answer {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+/*make rows striped*/
+.conversionTableContent tr:nth-child(even) {
+  background-color: rgba(200, 200, 200, 0.3);
+}
+.container {
+  display: flex;
+}
+
+.leftCol {
+  margin: 0 10vh;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.brands {
+  margin-bottom: 10vh;
+}
+/*
+  .leftCol {
+    background-color: #8bb;
+  }
+  .brands {
+    background-color:#c7b;
+  }
+  */
+
+table {
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+thead th {
+  font-family: "Roboto", sans-serif;
+  font-weight: 540;
+  color: white;
+  background-color: #dc9814;
+  padding: 2vh;
+}
+
+.chart{
+  display:none;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+.stickContent:before {
+  position: fixed;
+  display:flex;
+  /* line-height:12vh; */
+  height:12vh;
+  top:12vh;
+  text-indent:-99999px;
+}
+
+/*
+To keep width of the tbody the same
+*/
+#fakeHeader{
+  display:none;
+  height:auto;
+  visibility: hidden;
+}
+
+
+
+#testButton{
+  width:5vw;
+  height:5vh;
+}
+
+@media (min-height: 500px) {
+  thead th {
+    padding: 1vh;
+  }
+}
+
+#skateSize {
+  border-radius: 3px 0 0 0;
+}
+
+#shoeSize {
+  border-radius: 0 3px 0 0;
+}
+
+tbody td,
+tbody th {
+  padding: 1vh 0.5vh;
+}
+
+tr {
+  text-align: center;
+}
+
+tbody th {
+  background-color: rgba(52, 73, 94, 0.2);
+}
+
+td,
+th {
+  min-width: 60px;
+  position: relative;
+  cursor: default;
+}
+
+table {
+  border-spacing: 1px;
+}
+
+.brandContainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.skateChoice,
+.brandChoice {
+  background-color: rgba(0, 0, 0, 0.06694560669);
+  border: 1px solid #ddd;
+  margin: 3px 3px 3px 0;
+  padding: 3px 4px;
+  line-height: 25px;
+  text-align: center;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+}
+.skateChoice:hover,
+.brandChoice:hover {
+  background-color: rgba(0, 0, 0, 0.07694560669);
+  border-color: #34495e;
+}
+
+.clicked {
+  border-color: #34495e;
+  color: #fff;
+  transition-duration: 0.1s;
+  transition-property: color;
+  transition-timing-function: ease-in-out;
+}
+
+/*hovering the table*/
+
+table {
+  overflow: hidden;
+}
+
+tbody td:hover::before,
+tbody th:hover::before {
+  background-color: rgba(80, 80, 150, 0.2);
+  content: "";
+  height: 100%;
+  left: -5000px;
+  position: absolute;
+  top: 0;
+  width: 10000px;
+  z-index: -2;
+  border: 1px solid rgba(80, 80, 150, 0.4);
+}
+
+td:hover::after {
+  background-color: rgba(80, 80, 150, 0.2);
+  content: "";
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
+
+.selectSkateStyle {
+  z-index: -2;
+
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+
+  position: absolute;
+  top: 0;
+
+  background-color: #34495e;
+  color: #fff;
+  border: 1px solid #ddd;
+  margin: 3px 3px 3px 0;
+  text-align: center;
+  overflow: hidden;
+}
+</style>
