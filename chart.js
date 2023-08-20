@@ -1,34 +1,3 @@
-//data
-let brandChosen = "";
-let skateChosen = "";
-
-const calculatedData = [
-    2,
-    5,
-    6,
-    2,
-    15,
-    6,
-    34,
-    64,
-    23,
-    2,
-    54,
-    23,
-    643,
-    23,
-    643,
-    23,
-    643,
-    32,
-    123,
-    643,
-    75,
-    43
-];
-const smallerDataPool = [3, 2, 56, 4, 2];
-
-
 var brands_table = {};
 var brands_list = [];
 var brand_skates = [];
@@ -37,7 +6,8 @@ var my_size_cm = 0;
 var my_size_mm = 0;
 var my_size_mp = 0;
 var my_size_mondo = 0;
-var my_size_brand = "";
+var my_size_skate_brand = "";
+var my_size_shoe_brand = "";
 
 //Change this variable if you would like the table to be displayed on localhost
 var is_localhost = true;
@@ -65,28 +35,54 @@ function waitForElm(el) {
 
 function calculateSizes() {
     console.log("sizes:");
-    console.log(brandChosen);
-    console.log(skateChosen);
+    console.log(my_size_shoe_brand);
+    console.log(my_size_skate_brand);
+
+    shoe_chart = brands_table.table_data[my_size_shoe_brand];
+    skate_chart = brands_table.table_data[my_size_skate_brand];
+    
+    var skate_sizes_found = [];
+
+    for (let i = 0; i < shoe_chart.length; i++) {
+      var shoe = shoe_chart[i];
+      shoe_chart[i].psp_sizing_eu_skate = "0"
+      for (let s = 0; s < skate_chart.length; s++) {
+        const skate = skate_chart[s];
+        if (skate_sizes_found.includes(skate.psp_sizing_eu)) {
+            continue;
+        }
+        if (shoe.psp_sizing_cm == skate.psp_sizing_cm) {
+          shoe_chart[i].psp_sizing_eu_skate = skate.psp_sizing_eu;
+          skate_sizes_found.push(skate.psp_sizing_eu);
+          break;
+        }
+        let diff = shoe.psp_sizing_cm - skate.psp_sizing_cm;
+        if (diff > 0.5 || diff < -0.5) {
+            continue;
+        }
+        if (shoe.psp_sizing_cm >= skate.psp_sizing_cm) {
+          skate_sizes_found.push(skate.psp_sizing_eu);
+          shoe_chart[i].psp_sizing_eu_skate = skate.psp_sizing_eu;
+          break;
+        }
+      }
+    } 
+    console.log("Calculated sizes:")
+    console.log(shoe_chart);
+    update_table("", shoe_chart)
 }
 
 function checkChosen(category, choice) {
     console.log(category);
     console.log(choice);
 
-    if (
-        category == "brand" &&
-        document.querySelectorAll(".brandChoice.clicked") > 0
-    ) {
+    if (category == "brand") {
         console.log("here1");
-        brandChosen = choice;
+        my_size_shoe_brand = choice;
         calculateSizes();
-    } else if (
-        category == "skate" &&
-        document.querySelectorAll(".skateChoice.clicked") > 0
-    ) {
+    } else if (category == "skate") {
         console.log("here2");
-
-        skateChosen = choice;
+        my_size_skate_brand = choice;
         calculateSizes();
     }
 
@@ -362,7 +358,7 @@ function handleChart() {
 function set_global_size_choise(cm, mm, mp, mondo, brand, currentSize) {
     console.log("set_global_size_choise");
 
-    my_size_brand = brand;
+    my_size_skate_brand = brand;
     if (currentSize.classList.contains("choiceCm")) {
         my_size_cm = cm;
         my_size_mm = 0;
@@ -412,23 +408,28 @@ async function handleEventListeners() {
 
 // get size text, if size is 0, return empty string
 function get_size_text(size) {
+  try {
     return (size > 0) ? size : "";
+  } catch (error) {
+    return "";
+  }
 }
 
-// change table 
-function update_table(brandName = "") {
-    var brand_data = {};
-    var skate_data = {};
 
-    if (brandName.length > 0) {
+// change table 
+function update_table(brandName = "", brand_data_calculated = {}) {
+    var brand_data = {};
+
+    if (brand_data_calculated.length > 0) {
+        brand_data = brand_data_calculated;
+    }
+    else if (brandName.length > 0) {
         brand_data = brands_table.table_data[brandName]
     }
     else {
         brand_data = brands_table.table_data[brand_shoes[0]]
-    }
-
-    if (my_size_brand.length > 0) {
-        skate_data = brands_table.table_data[my_size_brand];
+        my_size_shoe_brand = brand_shoes[0];
+        my_size_skate_brand = brand_skates[0];
     }
 
     // console.log(`my_size_mm: ${my_size_mm}`);
@@ -447,17 +448,44 @@ function update_table(brandName = "") {
     brand_data.forEach((size_data) => {
         let tr = document.createElement("tr");
         let th = document.createElement("th");
-        th.innerHTML = "0";
+        
+        //Render Skate Size EU
+        th.innerHTML = `${get_size_text(size_data.psp_sizing_eu_skate)}`;
         tr.append(th);
-        //for each measurement we have in data, create a column with its value
-        for (const [key, value] of Object.entries(size_data)) {
-            // console.log(`${key}: ${value}`);
-            if (key != "psp_sizing_mp" && key != "psp_sizing_mondo") {//unused values
-                let td = document.createElement("td");
-                td.innerHTML = `${get_size_text(value)}`;
-                tr.append(td);
-            }
-        }
+
+        //Render Whole Table
+        let td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_w)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_m)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_j)}`;
+        tr.append(td);
+
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_eu)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_w)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_m)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_j)}`;
+        tr.append(td);
+
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_cm)}`;
+        tr.append(td);
 
         tableContent.append(tr);
     });
@@ -549,12 +577,12 @@ function handleStickyTableHeader() {
         if (window.pageYOffset > sticky) {
             header.classList.add("sticky");
             content.classList.add("stickContent");
-            fake.style.display="table-header-group";
+            fake.style.display = "table-header-group";
 
         } else {
             header.classList.remove("sticky");
             content.classList.remove("stickContent");
-            fake.style.display="none";
+            fake.style.display = "none";
 
         }
     });

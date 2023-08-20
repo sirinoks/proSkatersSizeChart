@@ -290,38 +290,8 @@ DONE
   <script type="text/javascript" src="chart.js"></script>
 </html>
 
+
 <script>
-//data
-let brandChosen = "";
-let skateChosen = "";
-
-const calculatedData = [
-    2,
-    5,
-    6,
-    2,
-    15,
-    6,
-    34,
-    64,
-    23,
-    2,
-    54,
-    23,
-    643,
-    23,
-    643,
-    23,
-    643,
-    32,
-    123,
-    643,
-    75,
-    43
-];
-const smallerDataPool = [3, 2, 56, 4, 2];
-
-
 var brands_table = {};
 var brands_list = [];
 var brand_skates = [];
@@ -330,11 +300,12 @@ var my_size_cm = 0;
 var my_size_mm = 0;
 var my_size_mp = 0;
 var my_size_mondo = 0;
-var my_size_brand = "";
+var my_size_skate_brand = "";
+var my_size_shoe_brand = "";
 
 //Change this variable if you would like the table to be displayed on localhost
 var is_localhost = false;
-var local_host_data = {};
+var local_host_data = { "plugin_brands_table": { "table_data": { "Puma": [{ "psp_sizing_cm": "3", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "1", "psp_sizing_mp": "2", "psp_sizing_mondo": "3", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "1", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "2", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "3", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }], "Adidas": [{ "psp_sizing_cm": "16.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "10.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "17", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "11", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "17.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "11.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "18", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "12", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "18.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "12.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "19", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "13", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "20", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "13.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "20.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "1", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "21", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "1.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "21.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "2", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "22", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "5", "psp_sizing_us_m": "0", "psp_sizing_us_j": "2.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "22.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "5.5", "psp_sizing_us_m": "0", "psp_sizing_us_j": "3.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "23", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "6", "psp_sizing_us_m": "0", "psp_sizing_us_j": "4.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "23.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "6.5", "psp_sizing_us_m": "0", "psp_sizing_us_j": "5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "24", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "7", "psp_sizing_us_m": "6", "psp_sizing_us_j": "5.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "24.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "7.5", "psp_sizing_us_m": "6.5", "psp_sizing_us_j": "6", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "25", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "8", "psp_sizing_us_m": "7", "psp_sizing_us_j": "6.5", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "25.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "8.5", "psp_sizing_us_m": "7.5", "psp_sizing_us_j": "7", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "26", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "9", "psp_sizing_us_m": "8", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "26.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "9.5", "psp_sizing_us_m": "8.5", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "27", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "10", "psp_sizing_us_m": "9", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "27.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "10.5", "psp_sizing_us_m": "9.5", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "28", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "11", "psp_sizing_us_m": "10", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "28.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "11.5", "psp_sizing_us_m": "10.5", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "29", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "12", "psp_sizing_us_m": "11", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "29.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "11.5", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "30", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "12", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "30.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "12.5", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "31", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "13", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "32", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "14", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "33", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "15", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "33.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "16", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "34.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "17", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "35.5", "psp_sizing_mp": "0", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "18", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }, { "psp_sizing_cm": "3333", "psp_sizing_mp": "333", "psp_sizing_mondo": "0", "psp_sizing_eu": "0", "psp_sizing_us_w": "0", "psp_sizing_us_m": "0", "psp_sizing_us_j": "0", "psp_sizing_uk_w": "0", "psp_sizing_uk_m": "0", "psp_sizing_uk_j": "0" }], "Seba - Skates": [{ "psp_sizing_cm": "1", "psp_sizing_mp": "2", "psp_sizing_mondo": "3", "psp_sizing_eu": "4", "psp_sizing_us_w": "5", "psp_sizing_us_m": "6", "psp_sizing_us_j": "7", "psp_sizing_uk_w": "8", "psp_sizing_uk_m": "9", "psp_sizing_uk_j": "0" }] } }, "plugin_brands_list": ["Adidas", "Puma", "Seba - Skates"] };
 
 function waitForElm(el) {
     return new Promise((resolve) => {
@@ -358,28 +329,54 @@ function waitForElm(el) {
 
 function calculateSizes() {
     console.log("sizes:");
-    console.log(brandChosen);
-    console.log(skateChosen);
+    console.log(my_size_shoe_brand);
+    console.log(my_size_skate_brand);
+
+    shoe_chart = brands_table.table_data[my_size_shoe_brand];
+    skate_chart = brands_table.table_data[my_size_skate_brand];
+    
+    var skate_sizes_found = [];
+
+    for (let i = 0; i < shoe_chart.length; i++) {
+      var shoe = shoe_chart[i];
+      shoe_chart[i].psp_sizing_eu_skate = "0"
+      for (let s = 0; s < skate_chart.length; s++) {
+        const skate = skate_chart[s];
+        if (skate_sizes_found.includes(skate.psp_sizing_eu)) {
+            continue;
+        }
+        if (shoe.psp_sizing_cm == skate.psp_sizing_cm) {
+          shoe_chart[i].psp_sizing_eu_skate = skate.psp_sizing_eu;
+          skate_sizes_found.push(skate.psp_sizing_eu);
+          break;
+        }
+        let diff = shoe.psp_sizing_cm - skate.psp_sizing_cm;
+        if (diff > 0.5 || diff < -0.5) {
+            continue;
+        }
+        if (shoe.psp_sizing_cm >= skate.psp_sizing_cm) {
+          skate_sizes_found.push(skate.psp_sizing_eu);
+          shoe_chart[i].psp_sizing_eu_skate = skate.psp_sizing_eu;
+          break;
+        }
+      }
+    } 
+    console.log("Calculated sizes:")
+    console.log(shoe_chart);
+    update_table("", shoe_chart)
 }
 
 function checkChosen(category, choice) {
     console.log(category);
     console.log(choice);
 
-    if (
-        category == "brand" &&
-        document.querySelectorAll(".brandChoice.clicked") > 0
-    ) {
+    if (category == "brand") {
         console.log("here1");
-        brandChosen = choice;
+        my_size_shoe_brand = choice;
         calculateSizes();
-    } else if (
-        category == "skate" &&
-        document.querySelectorAll(".skateChoice.clicked") > 0
-    ) {
+    } else if (category == "skate") {
         console.log("here2");
-
-        skateChosen = choice;
+        my_size_skate_brand = choice;
         calculateSizes();
     }
 
@@ -655,7 +652,7 @@ function handleChart() {
 function set_global_size_choise(cm, mm, mp, mondo, brand, currentSize) {
     console.log("set_global_size_choise");
 
-    my_size_brand = brand;
+    my_size_skate_brand = brand;
     if (currentSize.classList.contains("choiceCm")) {
         my_size_cm = cm;
         my_size_mm = 0;
@@ -705,23 +702,28 @@ async function handleEventListeners() {
 
 // get size text, if size is 0, return empty string
 function get_size_text(size) {
+  try {
     return (size > 0) ? size : "";
+  } catch (error) {
+    return "";
+  }
 }
 
-// change table 
-function update_table(brandName = "") {
-    var brand_data = {};
-    var skate_data = {};
 
-    if (brandName.length > 0) {
+// change table 
+function update_table(brandName = "", brand_data_calculated = {}) {
+    var brand_data = {};
+
+    if (brand_data_calculated.length > 0) {
+        brand_data = brand_data_calculated;
+    }
+    else if (brandName.length > 0) {
         brand_data = brands_table.table_data[brandName]
     }
     else {
         brand_data = brands_table.table_data[brand_shoes[0]]
-    }
-
-    if (my_size_brand.length > 0) {
-        skate_data = brands_table.table_data[my_size_brand];
+        my_size_shoe_brand = brand_shoes[0];
+        my_size_skate_brand = brand_skates[0];
     }
 
     // console.log(`my_size_mm: ${my_size_mm}`);
@@ -740,17 +742,44 @@ function update_table(brandName = "") {
     brand_data.forEach((size_data) => {
         let tr = document.createElement("tr");
         let th = document.createElement("th");
-        th.innerHTML = "0";
+        
+        //Render Skate Size EU
+        th.innerHTML = `${get_size_text(size_data.psp_sizing_eu_skate)}`;
         tr.append(th);
-        //for each measurement we have in data, create a column with its value
-        for (const [key, value] of Object.entries(size_data)) {
-            // console.log(`${key}: ${value}`);
-            if (key != "psp_sizing_mp" && key != "psp_sizing_mondo") {//unused values
-                let td = document.createElement("td");
-                td.innerHTML = `${get_size_text(value)}`;
-                tr.append(td);
-            }
-        }
+
+        //Render Whole Table
+        let td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_w)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_m)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_us_j)}`;
+        tr.append(td);
+
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_eu)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_w)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_m)}`;
+        tr.append(td);
+        
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_uk_j)}`;
+        tr.append(td);
+
+        td = document.createElement("td");
+        td.innerHTML = `${get_size_text(size_data.psp_sizing_cm)}`;
+        tr.append(td);
 
         tableContent.append(tr);
     });
@@ -842,12 +871,12 @@ function handleStickyTableHeader() {
         if (window.pageYOffset > sticky) {
             header.classList.add("sticky");
             content.classList.add("stickContent");
-            fake.style.display="table-header-group";
+            fake.style.display = "table-header-group";
 
         } else {
             header.classList.remove("sticky");
             content.classList.remove("stickContent");
-            fake.style.display="none";
+            fake.style.display = "none";
 
         }
     });
@@ -869,7 +898,6 @@ function sleep(ms) {
 
 //run everything after the page is loaded
 document.addEventListener("DOMContentLoaded", run());
-
 </script>
 
 <style>
